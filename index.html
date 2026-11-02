@@ -55,6 +55,7 @@
   <main id="top">
     <!-- ======================= HERO SECTION ======================= -->
     <section class="hero">
+      <canvas id="cyber-network-canvas" aria-hidden="true"></canvas>
       <div class="container hero-grid">
         <!-- Left Column: Identity & CTA -->
         <div>
@@ -89,6 +90,9 @@
             <a href="#projects" class="btn btn-primary">🚀 Explore Featured Projects</a>
             <a href="assets/Mehedi_Hasan_Resume.pdf" download="Mehedi_Hasan_Resume.pdf" class="btn btn-outline">⬇️ Download Resume (PDF)</a>
             <a href="#contact" class="btn btn-ghost">📬 Contact Me</a>
+            <button type="button" class="btn btn-ghost" id="hero-cmdk-btn" title="Open Command Palette (Ctrl + K)">
+              ⌘ Command Palette <kbd class="kbd-hint">Ctrl+K</kbd>
+            </button>
           </div>
 
           <div class="quick-badges">
@@ -163,7 +167,7 @@
 
         <div class="projects-grid">
           <!-- PROJECT 1: Fix_my_city -->
-          <article class="project-card">
+          <article class="project-card scroll-reveal" data-repo="Fix_my_city" data-tilt>
             <div>
               <div class="project-top-bar">
                 <div class="project-icon-title">
@@ -174,6 +178,9 @@
                   </div>
                 </div>
                 <span class="project-status-badge">● Live on Vercel</span>
+              </div>
+              <div class="repo-live-telemetry" data-repo-meta="Fix_my_city">
+                <span class="repo-stat">⚡ Live GitHub Sync...</span>
               </div>
 
               <p class="project-desc">
@@ -211,7 +218,7 @@
           </article>
 
           <!-- PROJECT 2: Meal_management_web_app (Plate & Spoon) -->
-          <article class="project-card">
+          <article class="project-card scroll-reveal" data-repo="Meal_management_web_app" data-tilt>
             <div>
               <div class="project-top-bar">
                 <div class="project-icon-title">
@@ -222,6 +229,9 @@
                   </div>
                 </div>
                 <span class="project-status-badge">● Live on Vercel</span>
+              </div>
+              <div class="repo-live-telemetry" data-repo-meta="Meal_management_web_app">
+                <span class="repo-stat">⚡ Live GitHub Sync...</span>
               </div>
 
               <p class="project-desc">
@@ -258,7 +268,7 @@
           </article>
 
           <!-- PROJECT 3: Convert_php_to_usdt -->
-          <article class="project-card">
+          <article class="project-card scroll-reveal" data-repo="Convert_php_to_usdt" data-tilt>
             <div>
               <div class="project-top-bar">
                 <div class="project-icon-title">
@@ -269,6 +279,9 @@
                   </div>
                 </div>
                 <span class="project-status-badge">🏷️ Release v4.0.0</span>
+              </div>
+              <div class="repo-live-telemetry" data-repo-meta="Convert_php_to_usdt">
+                <span class="repo-stat">⚡ Live GitHub Sync...</span>
               </div>
 
               <p class="project-desc">
@@ -304,7 +317,7 @@
           </article>
 
           <!-- PROJECT 4: Safe-Seller-Keep-Alive -->
-          <article class="project-card">
+          <article class="project-card scroll-reveal" data-repo="Safe-Seller-Keep-Alive" data-tilt>
             <div>
               <div class="project-top-bar">
                 <div class="project-icon-title">
@@ -315,6 +328,9 @@
                   </div>
                 </div>
                 <span class="project-status-badge">🏷️ Release v1.3.0 (Public)</span>
+              </div>
+              <div class="repo-live-telemetry" data-repo-meta="Safe-Seller-Keep-Alive">
+                <span class="repo-stat">⚡ Live GitHub Sync...</span>
               </div>
 
               <p class="project-desc">
@@ -365,7 +381,7 @@
 
         <div class="research-grid">
           <!-- Left: Research Lab Spotlight -->
-          <div class="research-card highlight">
+          <div class="research-card highlight scroll-reveal">
             <div class="lab-header">
               <div>
                 <h3 style="font-size: 1.35rem; font-weight: 800;">🔬 FEC CSE Research Lab</h3>
@@ -401,7 +417,7 @@
           </div>
 
           <!-- Right: Education & Career Timeline -->
-          <div class="research-card">
+          <div class="research-card scroll-reveal">
             <h3 style="font-family: var(--font-mono); font-size: 1.1rem; color: var(--cyan); margin-bottom: 1rem;">
               🎓 Academic &amp; Builder Timeline
             </h3>
@@ -448,7 +464,7 @@
         </div>
 
         <div class="skills-grid">
-          <div class="skill-category">
+          <div class="skill-category scroll-reveal">
             <h3 class="skill-cat-title">💻 Languages &amp; Core</h3>
             <div class="skill-pills">
               <span class="skill-pill">Python (Primary)</span>
@@ -463,7 +479,7 @@
             </div>
           </div>
 
-          <div class="skill-category">
+          <div class="skill-category scroll-reveal">
             <h3 class="skill-cat-title">🌐 Frameworks &amp; Libraries</h3>
             <div class="skill-pills">
               <span class="skill-pill">Django</span>
@@ -478,7 +494,7 @@
             </div>
           </div>
 
-          <div class="skill-category">
+          <div class="skill-category scroll-reveal">
             <h3 class="skill-cat-title">⚙️ Systems, APIs &amp; DevOps</h3>
             <div class="skill-pills">
               <span class="skill-pill">Windows Win32 API (ctypes)</span>
@@ -505,7 +521,7 @@
           </p>
         </div>
 
-        <div class="telemetry-wrap">
+        <div class="telemetry-wrap scroll-reveal">
           <div class="telemetry-cards">
             <img
               loading="lazy"
@@ -653,7 +669,7 @@
   <!-- ======================= ARCHITECTURE DEEP-DIVE MODALS ======================= -->
 
   <!-- Modal 1: Fix_my_city -->
-  <dialog id="modal-fix-my-city" class="arch-dialog" aria-labelledby="title-fix-my-city">
+  <dialog id="modal-fix-my-city" class="arch-dialog" closedby="any" aria-labelledby="title-fix-my-city">
     <div class="modal-header">
       <h3 id="title-fix-my-city">🏙️ Fix_my_city — System Architecture &amp; Pipeline</h3>
       <button type="button" class="modal-close" aria-label="Close modal">✕</button>
@@ -690,7 +706,7 @@
   </dialog>
 
   <!-- Modal 2: Meal_management_web_app -->
-  <dialog id="modal-meal-app" class="arch-dialog" aria-labelledby="title-meal-app">
+  <dialog id="modal-meal-app" class="arch-dialog" closedby="any" aria-labelledby="title-meal-app">
     <div class="modal-header">
       <h3 id="title-meal-app">🍽️ Plate &amp; Spoon (Meal_management_web_app) — System Architecture</h3>
       <button type="button" class="modal-close" aria-label="Close modal">✕</button>
@@ -717,7 +733,7 @@
   </dialog>
 
   <!-- Modal 3: Convert_php_to_usdt -->
-  <dialog id="modal-php-converter" class="arch-dialog" aria-labelledby="title-php-converter">
+  <dialog id="modal-php-converter" class="arch-dialog" closedby="any" aria-labelledby="title-php-converter">
     <div class="modal-header">
       <h3 id="title-php-converter">🧮 Convert_php_to_usdt (v4.0.0) — OS Overlay Architecture</h3>
       <button type="button" class="modal-close" aria-label="Close modal">✕</button>
@@ -742,7 +758,7 @@
   </dialog>
 
   <!-- Modal 4: Safe-Seller-Keep-Alive -->
-  <dialog id="modal-safe-seller" class="arch-dialog" aria-labelledby="title-safe-seller">
+  <dialog id="modal-safe-seller" class="arch-dialog" closedby="any" aria-labelledby="title-safe-seller">
     <div class="modal-header">
       <h3 id="title-safe-seller">🛡️ Safe-Seller-Keep-Alive (v1.3.0) — Manifest V3 Architecture</h3>
       <button type="button" class="modal-close" aria-label="Close modal">✕</button>
@@ -766,6 +782,35 @@
       </div>
     </div>
   </dialog>
+
+  <!-- ======================= COMMAND PALETTE (Ctrl + K) ======================= -->
+  <dialog id="cmdk-dialog" class="arch-dialog cmdk-modal" closedby="any" aria-labelledby="cmdk-title">
+    <div class="cmdk-search-bar">
+      <span class="cmdk-icon" aria-hidden="true">⌘</span>
+      <input
+        type="text"
+        id="cmdk-input"
+        class="cmdk-input"
+        placeholder="Type a command or search projects, research, CV, links..."
+        autocomplete="off"
+        aria-labelledby="cmdk-title"
+      />
+      <span id="cmdk-title" class="sr-only">Command Palette</span>
+      <button type="button" class="modal-close" aria-label="Close Command Palette">Esc</button>
+    </div>
+    <div class="cmdk-list" id="cmdk-list" role="listbox" aria-label="Command actions"></div>
+    <div class="cmdk-footer">
+      <span><kbd>↑</kbd> <kbd>↓</kbd> Navigate</span>
+      <span><kbd>Enter</kbd> Execute</span>
+      <span><kbd>Esc</kbd> Dismiss</span>
+    </div>
+  </dialog>
+
+  <!-- Floating Command Palette Launcher Pill -->
+  <button type="button" id="floating-cmdk-trigger" class="floating-cmdk-btn" aria-label="Open Command Palette (Ctrl + K)">
+    <span>⌘ Command</span>
+    <kbd>Ctrl+K</kbd>
+  </button>
 
   <!-- ======================= FOOTER ======================= -->
   <footer class="footer">

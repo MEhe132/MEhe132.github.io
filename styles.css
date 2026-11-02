@@ -260,13 +260,38 @@ section {
    ========================================================================== */
 .hero {
   padding: 4.5rem 0 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+#cyber-network-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.72;
 }
 
 .hero-grid {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 1.05fr 1.15fr;
   gap: 2.5rem;
   align-items: center;
+}
+
+.kbd-hint {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  background: rgba(0, 247, 255, 0.12);
+  color: var(--cyan);
+  border: 1px solid var(--border-cyan);
+  border-radius: 4px;
+  padding: 0.1rem 0.38rem;
+  margin-left: 0.25rem;
 }
 
 .status-pill {
@@ -1037,6 +1062,229 @@ dialog.arch-dialog::backdrop {
   font-family: var(--font-mono);
   font-size: 0.82rem;
   color: var(--text-muted);
+}
+
+/* ==========================================================================
+   V2.0 ENHANCEMENTS: LIVE GITHUB REPO METADATA, CMD+K PALETTE, 3D TILT & REVEALS
+   ========================================================================== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Live GitHub Repo Telemetry Strip inside Project Cards */
+.repo-live-telemetry {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.9rem;
+  padding: 0.38rem 0.7rem;
+  background: rgba(9, 13, 19, 0.72);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.73rem;
+  color: var(--text-muted);
+}
+
+.repo-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--text-secondary);
+}
+
+.repo-stat strong {
+  color: var(--cyan);
+}
+
+/* 3D Card Perspective & Spotlight Glow */
+.project-card[data-tilt] {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.project-card[data-tilt]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    420px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(0, 247, 255, 0.08),
+    transparent 60%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.project-card[data-tilt]:hover::after {
+  opacity: 1;
+}
+
+/* Command Palette (Ctrl + K) Dialog & Floating Trigger */
+dialog.cmdk-modal {
+  width: min(92vw, 620px);
+  border-color: var(--cyan);
+}
+
+.cmdk-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.95rem 1.25rem;
+  background: #121721;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.cmdk-icon {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  color: var(--cyan);
+}
+
+.cmdk-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-main);
+  font-family: var(--font-mono);
+  font-size: 0.92rem;
+}
+
+.cmdk-list {
+  max-height: 340px;
+  overflow-y: auto;
+  padding: 0.55rem;
+}
+
+.cmdk-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 0.9rem;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.cmdk-item:hover,
+.cmdk-item.active {
+  background: rgba(0, 247, 255, 0.1);
+  border-color: var(--border-cyan);
+  color: var(--text-main);
+}
+
+.cmdk-item-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cmdk-item-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--cyan);
+  background: rgba(0, 247, 255, 0.08);
+  padding: 0.18rem 0.5rem;
+  border-radius: 4px;
+}
+
+.cmdk-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 1.25rem;
+  background: #090D13;
+  border-top: 1px solid var(--border-subtle);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}
+
+.cmdk-footer kbd,
+.floating-cmdk-btn kbd {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  padding: 0.1rem 0.4rem;
+  color: var(--cyan);
+}
+
+.floating-cmdk-btn {
+  position: fixed;
+  bottom: 1.4rem;
+  right: 1.4rem;
+  z-index: 95;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: rgba(13, 17, 23, 0.92);
+  backdrop-filter: blur(10px);
+  color: var(--text-main);
+  border: 1px solid var(--border-cyan);
+  border-radius: 999px;
+  padding: 0.55rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 18px rgba(0, 247, 255, 0.2);
+  transition: all var(--transition);
+}
+
+.floating-cmdk-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.75), 0 0 25px rgba(0, 247, 255, 0.45);
+}
+
+/* Scroll Entry Reveal Animations (CSS Scroll-Driven with IntersectionObserver Fallback) */
+@media (prefers-reduced-motion: no-preference) {
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    @keyframes cyber-reveal-in {
+      from {
+        opacity: 0.15;
+        transform: translateY(24px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .scroll-reveal {
+      animation: cyber-reveal-in auto linear backwards;
+      animation-timeline: view(block);
+      animation-range: entry 5% cover 24%;
+    }
+  }
+}
+
+.scroll-reveal.io-hidden {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.scroll-reveal.io-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Responsive Breakpoints */
