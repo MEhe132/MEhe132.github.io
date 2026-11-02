@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mehedi Hasan (MEhe132) — Python, Automation &amp; Full-Stack Tooling Developer</title>
+  <meta name="description" content="Portfolio of Mehedi Hasan (@MEhe132) — Python, Automation & Full-Stack Tooling Developer, B.Sc. in CSE Undergraduate & Research Assistant at FEC CSE Research Lab, Faridpur Engineering College." />
+  <meta name="author" content="Mehedi Hasan" />
+  <meta name="theme-color" content="#0D1117" />
+
+  <!-- Open Graph / Social Preview -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Mehedi Hasan (@MEhe132) — Developer &amp; CSE Research Portfolio" />
+  <meta property="og:description" content="Python, Automation & Full-Stack Builder ⚡ | CSE Undergrad & Research Assistant @ FEC CSE Research Lab 🔬 | Building tools, web apps & extensions." />
+  <meta property="og:image" content="https://github.com/MEhe132.png" />
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <link rel="icon" type="image/png" href="https://github.com/MEhe132.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ======================= TOP NAVIGATION ======================= -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#top" class="brand">
+        <span class="brand-prompt">mehedi@MEhe132</span><span>:~/portfolio$</span><span class="brand-cursor"></span>
+      </a>
+
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="#projects">./projects</a></li>
+          <li><a href="#research">./research-lab</a></li>
+          <li><a href="#skills">./tech-stack</a></li>
+          <li><a href="#telemetry">./telemetry</a></li>
+          <li><a href="#contact">./contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="assets/Mehedi_Hasan_Resume.pdf" target="_blank" rel="noopener" class="btn btn-outline btn-sm">
+          📄 View / Download CV
+        </a>
+        <a href="https://github.com/MEhe132" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+          ⚡ GitHub
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ======================= HERO SECTION ======================= -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <!-- Left Column: Identity & CTA -->
+        <div>
+          <div class="status-pill">
+            <span class="status-dot"></span>
+            <span>Open to SWE Internships, Research, Freelance &amp; Full-Time Roles</span>
+          </div>
+
+          <div class="hero-identity">
+            <div class="avatar-wrap">
+              <img src="https://github.com/MEhe132.png" alt="Mehedi Hasan (@MEhe132)" fetchpriority="high" />
+            </div>
+            <div>
+              <h1 class="hero-name">Mehedi Hasan</h1>
+              <div class="hero-handle">@MEhe132 · Faridpur / Dhaka, Bangladesh</div>
+            </div>
+          </div>
+
+          <div class="hero-typing-wrap" aria-live="polite">
+            <span>&gt;</span>
+            <span id="hero-typing-text">Python / Automation &amp; Full-Stack Tooling Developer</span>
+            <span class="brand-cursor"></span>
+          </div>
+
+          <p class="hero-bio">
+            Computer Science &amp; Engineering undergraduate at <strong>Faridpur Engineering College (FEC)</strong> and
+            <strong>Undergraduate Research Assistant @ FEC CSE Research Lab</strong>. I engineer high-concurrency full-stack web platforms,
+            OS-level Windows desktop overlays, and stealth browser automation extensions.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#projects" class="btn btn-primary">🚀 Explore Featured Projects</a>
+            <a href="assets/Mehedi_Hasan_Resume.pdf" download="Mehedi_Hasan_Resume.pdf" class="btn btn-outline">⬇️ Download Resume (PDF)</a>
+            <a href="#contact" class="btn btn-ghost">📬 Contact Me</a>
+          </div>
+
+          <div class="quick-badges">
+            <span class="quick-badge">🐍 Python Primary</span>
+            <span class="quick-badge">🔬 FEC CSE Research Lab</span>
+            <span class="quick-badge">🪟 Win32 API &amp; Overlays</span>
+            <span class="quick-badge">🧩 Manifest V3 Extensions</span>
+            <span class="quick-badge">🗺️ Django / Flask / GIS</span>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive Terminal Emulator -->
+        <div class="terminal-card" aria-label="Interactive Developer Terminal">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <div class="terminal-title">zsh — mehedi@MEhe132:~/portfolio (Interactive)</div>
+            <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--cyan);">v2.4</div>
+          </div>
+
+          <div class="terminal-chips" aria-label="Quick terminal commands">
+            <button type="button" class="cmd-chip" data-cmd="whoami">whoami</button>
+            <button type="button" class="cmd-chip" data-cmd="projects">ls ./projects</button>
+            <button type="button" class="cmd-chip" data-cmd="research">research</button>
+            <button type="button" class="cmd-chip" data-cmd="skills">skills</button>
+            <button type="button" class="cmd-chip" data-cmd="resume">resume</button>
+            <button type="button" class="cmd-chip" data-cmd="contact">contact</button>
+            <button type="button" class="cmd-chip" data-cmd="clear">clear</button>
+          </div>
+
+          <div class="terminal-body" id="terminal-output">
+            <div class="term-line"><span class="term-prompt">mehedi@MEhe132</span>:<span class="term-path">~/portfolio</span>$ whoami</div>
+            <div class="term-line"><span class="term-key">developer:</span></div>
+            <div class="term-line">  <span class="term-key">name:</span> <span class="term-string">"Mehedi Hasan"</span></div>
+            <div class="term-line">  <span class="term-key">handle:</span> <span class="term-string">"@MEhe132"</span></div>
+            <div class="term-line">  <span class="term-key">role:</span> <span class="term-string">"Python, Automation &amp; Full-Stack Tooling Developer"</span></div>
+            <div class="term-line">  <span class="term-key">education:</span> <span class="term-string">"B.Sc. in CSE @ Faridpur Engineering College (FEC)"</span></div>
+            <div class="term-line">  <span class="term-key">lab:</span> <span class="term-string">"Undergraduate Research Assistant @ FEC CSE Research Lab"</span></div>
+            <div class="term-line">  <span class="term-key">research_status:</span> <span class="term-string">"Active research in progress — manuscripts upcoming"</span></div>
+            <br />
+            <div class="term-line" style="color: var(--text-muted);">💡 Tip: Click any command chip above or type <span class="term-string">help</span>, <span class="term-string">projects</span>, or <span class="term-string">resume</span> below and press Enter.</div>
+          </div>
+
+          <div class="terminal-input-row">
+            <span class="term-prompt">mehedi@MEhe132:~$</span>
+            <input
+              type="text"
+              id="terminal-input"
+              class="terminal-input"
+              placeholder="Type a command (help, whoami, projects, research, skills, resume, clear)..."
+              autocomplete="off"
+              aria-label="Terminal command input"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= FEATURED PROJECTS ======================= -->
+    <section id="projects">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-cmd">$ ls -la ./featured-projects</div>
+          <h2 class="section-title">Featured Engineering &amp; Full-Stack Systems</h2>
+          <p class="section-subtitle">
+            Production web applications, OS-level Windows desktop overlays, and stealth browser automation extensions—complete with live deployments, official GitHub releases, and deep-dive system architectures.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+          <!-- PROJECT 1: Fix_my_city -->
+          <article class="project-card">
+            <div>
+              <div class="project-top-bar">
+                <div class="project-icon-title">
+                  <div class="project-emoji">🏙️</div>
+                  <div>
+                    <h3 class="project-title">Fix_my_city</h3>
+                    <div class="project-subtitle">Bangladesh Civic Infrastructure Issue Tracker &amp; GIS</div>
+                  </div>
+                </div>
+                <span class="project-status-badge">● Live on Vercel</span>
+              </div>
+
+              <p class="project-desc">
+                Advanced civic technology platform designed to track, triage, and resolve broken public infrastructure (potholes, water leaks, streetlights, drainage) across Dhaka municipal wards (DNCC &amp; DSCC).
+              </p>
+
+              <ul class="project-highlights">
+                <li><strong>Two-Tier Role Architecture:</strong> Citizen Reporter vs. Municipal Authority Triage Console with immutable audit trails (<code>StatusHistory</code>).</li>
+                <li><strong>Hybrid AI &amp; Spam Verification:</strong> Camera Hardware EXIF fast-path verification + binary header/noise detector blocking Midjourney/DALL-E synthetic uploads.</li>
+                <li><strong>Automated Legal Petition Generator:</strong> 1-click official PDF petitions via <code>ReportLab</code> under the Local Government Act 2009 &amp; RTI Act 2009 with GPS watermarks.</li>
+                <li><strong>Interactive GIS Mapping:</strong> Multi-layer <code>Leaflet.js</code> ward map with live GPS/IP geolocation and OpenStreetMap Nominatim reverse geocoding.</li>
+              </ul>
+
+              <div class="tech-tags">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Django</span>
+                <span class="tech-tag">Leaflet.js GIS</span>
+                <span class="tech-tag">ReportLab PDF</span>
+                <span class="tech-tag">EXIF / AI Forensic Filter</span>
+                <span class="tech-tag">HTML5/CSS3/JS</span>
+              </div>
+            </div>
+
+            <div class="project-actions">
+              <a href="https://fix-my-city-rouge-three.vercel.app/" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+                🌐 Live Demo
+              </a>
+              <a href="https://github.com/MEhe132/Fix_my_city" target="_blank" rel="noopener" class="btn btn-outline btn-sm">
+                💻 GitHub Repo
+              </a>
+              <button type="button" class="btn btn-ghost btn-sm" data-modal-target="modal-fix-my-city">
+                ⚙️ System Architecture
+              </button>
+            </div>
+          </article>
+
+          <!-- PROJECT 2: Meal_management_web_app (Plate & Spoon) -->
+          <article class="project-card">
+            <div>
+              <div class="project-top-bar">
+                <div class="project-icon-title">
+                  <div class="project-emoji">🍽️</div>
+                  <div>
+                    <h3 class="project-title">Meal_management_web_app</h3>
+                    <div class="project-subtitle">Plate &amp; Spoon — Real-Time Hostel Meal &amp; Financial Auditing</div>
+                  </div>
+                </div>
+                <span class="project-status-badge">● Live on Vercel</span>
+              </div>
+
+              <p class="project-desc">
+                Full-featured multi-user web platform for managing hostel menus &amp; meals, automated meal-rate accounting, role-based slot locking, expense auditing, and real-time group chat.
+              </p>
+
+              <ul class="project-highlights">
+                <li><strong>Real-Time SSE Streaming:</strong> Custom thread-safe <code>MessageAnnouncer</code> using <code>threading.Lock()</code> for non-blocking live chat and financial notifications.</li>
+                <li><strong>High-Performance SQL Architecture:</strong> Bulk aggregation queries (<code>get_bulk_user_monthly_stats</code>) and composite indexes reducing dashboard loads from 100+ queries to 3–4 sub-millisecond queries.</li>
+                <li><strong>Dynamic Financial Engine:</strong> Live calculation of per-meal rates, member deposits, shared expenses, and individual net balances with manager role-transfer support.</li>
+              </ul>
+
+              <div class="tech-tags">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Flask</span>
+                <span class="tech-tag">SQLAlchemy ORM</span>
+                <span class="tech-tag">Server-Sent Events (SSE)</span>
+                <span class="tech-tag">PostgreSQL / SQLite</span>
+                <span class="tech-tag">Tailwind CSS</span>
+              </div>
+            </div>
+
+            <div class="project-actions">
+              <a href="https://fix-my-city-jotq.vercel.app/menu" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+                🌐 Live App (Plate &amp; Spoon)
+              </a>
+              <a href="https://github.com/MEhe132/Meal_management_web_app" target="_blank" rel="noopener" class="btn btn-outline btn-sm">
+                💻 GitHub Repo
+              </a>
+              <button type="button" class="btn btn-ghost btn-sm" data-modal-target="modal-meal-app">
+                ⚙️ System Architecture
+              </button>
+            </div>
+          </article>
+
+          <!-- PROJECT 3: Convert_php_to_usdt -->
+          <article class="project-card">
+            <div>
+              <div class="project-top-bar">
+                <div class="project-icon-title">
+                  <div class="project-emoji">🧮</div>
+                  <div>
+                    <h3 class="project-title">Convert_php_to_usdt</h3>
+                    <div class="project-subtitle">Desktop Currency &amp; OCR Calculator Overlay (calc-php-converter)</div>
+                  </div>
+                </div>
+                <span class="project-status-badge">🏷️ Release v4.0.0</span>
+              </div>
+
+              <p class="project-desc">
+                Lightweight, frameless, always-on-top Windows desktop overlay utility for real-time PHP ⇄ USDT currency conversion, on-screen math evaluation, dynamic UI sizing, and quick notes.
+              </p>
+
+              <ul class="project-highlights">
+                <li><strong>OS-Level Win32 Integration:</strong> Direct Win32 API calls via <code>ctypes</code> for global hotkeys (<code>Ctrl + /</code> to summon, <code>Ctrl + +/-</code> for live opacity adjustment) and High-DPI scaling.</li>
+                <li><strong>Google Lens OCR Screen Snipping:</strong> Built-in region-snip tool using <code>Pillow</code> to grab prices/numbers directly off any screen window.</li>
+                <li><strong>Persistent Session State:</strong> Preserves window coordinates, dynamic UI sizing, integrated notepad state, and transparency in <code>window_config.json</code>.</li>
+              </ul>
+
+              <div class="tech-tags">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Tkinter GUI</span>
+                <span class="tech-tag">Windows Win32 API (ctypes)</span>
+                <span class="tech-tag">Pillow (PIL) OCR</span>
+                <span class="tech-tag">Desktop Automation</span>
+              </div>
+            </div>
+
+            <div class="project-actions">
+              <a href="https://github.com/MEhe132/Convert_php_to_usdt/releases/tag/v4.0.0" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+                🚀 Latest Release (v4.0.0)
+              </a>
+              <a href="https://github.com/MEhe132/Convert_php_to_usdt" target="_blank" rel="noopener" class="btn btn-outline btn-sm">
+                💻 GitHub Repo
+              </a>
+              <button type="button" class="btn btn-ghost btn-sm" data-modal-target="modal-php-converter">
+                ⚙️ System Architecture
+              </button>
+            </div>
+          </article>
+
+          <!-- PROJECT 4: Safe-Seller-Keep-Alive -->
+          <article class="project-card">
+            <div>
+              <div class="project-top-bar">
+                <div class="project-icon-title">
+                  <div class="project-emoji">🛡️</div>
+                  <div>
+                    <h3 class="project-title">Safe-Seller-Keep-Alive</h3>
+                    <div class="project-subtitle">Stealth Marketplace Session Manager (Manifest V3)</div>
+                  </div>
+                </div>
+                <span class="project-status-badge">🏷️ Release v1.3.0 (Public)</span>
+              </div>
+
+              <p class="project-desc">
+                Background browser extension for Microsoft Edge and Google Chrome that keeps marketplace seller accounts (G2G &amp; U7BUY) active at randomized intervals without stealing window focus.
+              </p>
+
+              <ul class="project-highlights">
+                <li><strong>Randomized Jitter Engine:</strong> Uses <code>chrome.alarms</code> (600s–1000s randomized intervals) to mimic natural human activity in a single background tab.</li>
+                <li><strong>Hardware Wake-Lock &amp; Auto-Recovery:</strong> Prevents Windows S0 Modern Standby sleep via <code>chrome.power</code> and auto-recovers expired timers after PC restarts.</li>
+                <li><strong>Cloudflare &amp; Logout Safeguard:</strong> Inspects tab titles/URLs prior to refresh and automatically pauses + alerts the user if a security challenge or login redirect occurs.</li>
+              </ul>
+
+              <div class="tech-tags">
+                <span class="tech-tag">JavaScript (ES6+)</span>
+                <span class="tech-tag">Manifest V3</span>
+                <span class="tech-tag">Service Workers</span>
+                <span class="tech-tag">chrome.alarms &amp; chrome.power</span>
+                <span class="tech-tag">Edge / Chrome Extension</span>
+              </div>
+            </div>
+
+            <div class="project-actions">
+              <a href="https://github.com/MEhe132/Safe-Seller-Keep-Alive/releases/tag/v1.3.0" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+                🚀 Latest Release (v1.3.0)
+              </a>
+              <a href="https://github.com/MEhe132/Safe-Seller-Keep-Alive" target="_blank" rel="noopener" class="btn btn-outline btn-sm">
+                💻 GitHub Repo
+              </a>
+              <button type="button" class="btn btn-ghost btn-sm" data-modal-target="modal-safe-seller">
+                ⚙️ System Architecture
+              </button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= RESEARCH & EDUCATION ======================= -->
+    <section id="research">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-cmd">$ cat /lab/fec-cse-research.yaml</div>
+          <h2 class="section-title">Academic Research &amp; Engineering Foundation</h2>
+          <p class="section-subtitle">
+            Bridging rigorous Computer Science theory with practical systems engineering at Faridpur Engineering College.
+          </p>
+        </div>
+
+        <div class="research-grid">
+          <!-- Left: Research Lab Spotlight -->
+          <div class="research-card highlight">
+            <div class="lab-header">
+              <div>
+                <h3 style="font-size: 1.35rem; font-weight: 800;">🔬 FEC CSE Research Lab</h3>
+                <p style="color: var(--cyan); font-family: var(--font-mono); font-size: 0.88rem;">
+                  Undergraduate Research Assistant · Faridpur Engineering College
+                </p>
+              </div>
+              <span class="lab-badge">Active Research · Manuscripts in Progress</span>
+            </div>
+
+            <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1rem;">
+              Actively conducting undergraduate research in Computer Science &amp; Engineering at the <strong>FEC CSE Research Lab</strong>. Working alongside faculty advisors and fellow researchers on experimental pipelines, empirical evaluation, and upcoming peer-reviewed manuscripts.
+            </p>
+
+            <div class="research-pillars">
+              <div class="pillar-item">
+                <h4>01 // Applied CSE Research</h4>
+                <p>Designing reproducible experiments, data pipelines, and algorithmic benchmarks for upcoming academic manuscripts.</p>
+              </div>
+              <div class="pillar-item">
+                <h4>02 // Systems &amp; Verification</h4>
+                <p>Exploring intersection of automated verification, computer vision forensics, and resilient distributed systems.</p>
+              </div>
+              <div class="pillar-item">
+                <h4>03 // Open-Source Tooling</h4>
+                <p>Translating research concepts into practical developer utilities, civic-tech platforms, and automation workflows.</p>
+              </div>
+              <div class="pillar-item">
+                <h4>04 // Collaborative Inquiry</h4>
+                <p>Open to academic research collaborations, co-authoring opportunities, and research internships.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Education & Career Timeline -->
+          <div class="research-card">
+            <h3 style="font-family: var(--font-mono); font-size: 1.1rem; color: var(--cyan); margin-bottom: 1rem;">
+              🎓 Academic &amp; Builder Timeline
+            </h3>
+
+            <div class="timeline-list">
+              <div class="timeline-node">
+                <span>PRESENT · ACTIVE</span>
+                <h4>Undergraduate Research Assistant</h4>
+                <p><strong>FEC CSE Research Lab</strong> — Conducting applied CSE research; manuscripts and experimental papers in preparation.</p>
+              </div>
+
+              <div class="timeline-node">
+                <span>PRESENT · UNDERGRADUATE</span>
+                <h4>B.Sc. in Computer Science &amp; Engineering (CSE)</h4>
+                <p><strong>Faridpur Engineering College (FEC)</strong> — Focusing on algorithms, systems programming, database engines, and full-stack software engineering.</p>
+              </div>
+
+              <div class="timeline-node">
+                <span>CONTINUOUS · OPEN SOURCE</span>
+                <h4>Full-Stack &amp; Automation Systems Builder (@MEhe132)</h4>
+                <p>Shipped civic GIS trackers, real-time SSE hostel financial engines, Win32 OCR overlays, and Manifest V3 browser extensions.</p>
+              </div>
+            </div>
+
+            <div style="margin-top: 1.6rem; padding-top: 1.2rem; border-top: 1px solid var(--border-subtle); display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <a href="assets/Mehedi_Hasan_Resume.pdf" target="_blank" rel="noopener" class="btn btn-outline btn-sm">
+                📄 Read Full Academic &amp; Technical CV
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= TECH STACK & SKILLS ======================= -->
+    <section id="skills">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-cmd">$ cat /etc/tech-stack.conf</div>
+          <h2 class="section-title">Languages, Frameworks &amp; Systems Tooling</h2>
+          <p class="section-subtitle">
+            Core technologies I use to architect full-stack applications, low-level OS utilities, and automated workflows.
+          </p>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h3 class="skill-cat-title">💻 Languages &amp; Core</h3>
+            <div class="skill-pills">
+              <span class="skill-pill">Python (Primary)</span>
+              <span class="skill-pill">C</span>
+              <span class="skill-pill">C++</span>
+              <span class="skill-pill">Java</span>
+              <span class="skill-pill">JavaScript (ES6+)</span>
+              <span class="skill-pill">TypeScript</span>
+              <span class="skill-pill">SQL</span>
+              <span class="skill-pill">HTML5</span>
+              <span class="skill-pill">CSS3</span>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <h3 class="skill-cat-title">🌐 Frameworks &amp; Libraries</h3>
+            <div class="skill-pills">
+              <span class="skill-pill">Django</span>
+              <span class="skill-pill">Flask</span>
+              <span class="skill-pill">SQLAlchemy ORM</span>
+              <span class="skill-pill">Tailwind CSS</span>
+              <span class="skill-pill">Node.js</span>
+              <span class="skill-pill">Leaflet.js (GIS)</span>
+              <span class="skill-pill">Tkinter GUI</span>
+              <span class="skill-pill">ReportLab (PDF)</span>
+              <span class="skill-pill">Pillow (PIL)</span>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <h3 class="skill-cat-title">⚙️ Systems, APIs &amp; DevOps</h3>
+            <div class="skill-pills">
+              <span class="skill-pill">Windows Win32 API (ctypes)</span>
+              <span class="skill-pill">Chrome/Edge Manifest V3</span>
+              <span class="skill-pill">Server-Sent Events (SSE)</span>
+              <span class="skill-pill">PostgreSQL &amp; SQLite</span>
+              <span class="skill-pill">Git &amp; GitHub Actions</span>
+              <span class="skill-pill">Vercel Deployment</span>
+              <span class="skill-pill">Linux / Bash</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= GITHUB TELEMETRY & SNAKE ======================= -->
+    <section id="telemetry">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-cmd">$ top -u MEhe132</div>
+          <h2 class="section-title">Live GitHub Telemetry &amp; Contribution Activity</h2>
+          <p class="section-subtitle">
+            Real-time open-source metrics, language distribution, commit streaks, and automated contribution grid snake from <code>@MEhe132</code>.
+          </p>
+        </div>
+
+        <div class="telemetry-wrap">
+          <div class="telemetry-cards">
+            <img
+              loading="lazy"
+              src="https://github-readme-stats.vercel.app/api?username=MEhe132&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=00F7FF&icon_color=00F7FF&text_color=C9D1D9&include_all_commits=true&count_private=true"
+              alt="MEhe132 GitHub Stats"
+            />
+            <img
+              loading="lazy"
+              src="https://github-readme-stats.vercel.app/api/top-langs/?username=MEhe132&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=00F7FF&text_color=C9D1D9&langs_count=8"
+              alt="MEhe132 Top Languages"
+            />
+            <img
+              loading="lazy"
+              src="https://streak-stats.demolab.com?user=MEhe132&theme=tokyonight&hide_border=true&background=0D1117&stroke=00F7FF&ring=00F7FF&fire=00F7FF&currStreakLabel=00F7FF"
+              alt="MEhe132 GitHub Streak"
+            />
+          </div>
+
+          <div class="snake-box">
+            <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.65rem;">
+              🐍 Automated GitHub Contribution Grid Snake (<code>MEhe132/MEhe132</code>)
+            </div>
+            <img
+              loading="lazy"
+              src="https://raw.githubusercontent.com/MEhe132/MEhe132/output/github-contribution-grid-snake-dark.svg"
+              alt="MEhe132 GitHub Contribution Grid Snake"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= CONTACT HUB & FORM ======================= -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-cmd">$ ssh connect@mehedi-hasan</div>
+          <h2 class="section-title">Initiate Connection &amp; Collaboration</h2>
+          <p class="section-subtitle">
+            Available for Software Engineering Internships, Research Collaborations, Freelance Tooling Projects, and Full-Time Opportunities.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Left: Direct Channels -->
+          <div>
+            <h3 style="font-family: var(--font-mono); font-size: 1.05rem; color: var(--cyan);">
+              Direct Communication Channels
+            </h3>
+            <p style="color: var(--text-secondary); font-size: 0.92rem; margin-top: 0.35rem;">
+              Reach out directly via any platform below or download my complete CV/Resume PDF.
+            </p>
+
+            <div class="social-cards">
+              <a href="mailto:mhbhuiyan2004@gmail.com" class="social-item">
+                <div class="social-left">
+                  <span style="font-size: 1.35rem;">📧</span>
+                  <div>
+                    <div class="social-label">EMAIL / GMAIL</div>
+                    <div class="social-handle">mhbhuiyan2004@gmail.com</div>
+                  </div>
+                </div>
+                <span style="color: var(--cyan); font-family: var(--font-mono);">↗</span>
+              </a>
+
+              <a href="https://www.linkedin.com/in/mehedi-hasan-a8bb362a1/" target="_blank" rel="noopener" class="social-item">
+                <div class="social-left">
+                  <span style="font-size: 1.35rem;">💼</span>
+                  <div>
+                    <div class="social-label">LINKEDIN</div>
+                    <div class="social-handle">in/mehedi-hasan-a8bb362a1</div>
+                  </div>
+                </div>
+                <span style="color: var(--cyan); font-family: var(--font-mono);">↗</span>
+              </a>
+
+              <a href="https://github.com/MEhe132" target="_blank" rel="noopener" class="social-item">
+                <div class="social-left">
+                  <span style="font-size: 1.35rem;">🐙</span>
+                  <div>
+                    <div class="social-label">GITHUB</div>
+                    <div class="social-handle">github.com/MEhe132</div>
+                  </div>
+                </div>
+                <span style="color: var(--cyan); font-family: var(--font-mono);">↗</span>
+              </a>
+
+              <a href="https://t.me/Mh_13585" target="_blank" rel="noopener" class="social-item">
+                <div class="social-left">
+                  <span style="font-size: 1.35rem;">✈️</span>
+                  <div>
+                    <div class="social-label">TELEGRAM</div>
+                    <div class="social-handle">@Mh_13585</div>
+                  </div>
+                </div>
+                <span style="color: var(--cyan); font-family: var(--font-mono);">↗</span>
+              </a>
+
+              <a href="https://discord.com/users/mh_13585" target="_blank" rel="noopener" class="social-item">
+                <div class="social-left">
+                  <span style="font-size: 1.35rem;">🎮</span>
+                  <div>
+                    <div class="social-label">DISCORD</div>
+                    <div class="social-handle">mh_13585</div>
+                  </div>
+                </div>
+                <span style="color: var(--cyan); font-family: var(--font-mono);">↗</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right: Quick Message Dispatch Form -->
+          <div class="contact-form-card">
+            <h3 style="font-family: var(--font-mono); font-size: 1.05rem; color: var(--cyan); margin-bottom: 1.1rem;">
+              ⚡ Send a Direct Message
+            </h3>
+            <form id="portfolio-contact-form">
+              <div class="form-group">
+                <label for="cf-name">YOUR_NAME</label>
+                <input type="text" id="cf-name" class="form-control" placeholder="e.g. Recruiter / Collaborator" required />
+              </div>
+              <div class="form-group">
+                <label for="cf-email">YOUR_EMAIL</label>
+                <input type="email" id="cf-email" class="form-control" placeholder="you@company.com" required />
+              </div>
+              <div class="form-group">
+                <label for="cf-subject">SUBJECT / OPPORTUNITY</label>
+                <input type="text" id="cf-subject" class="form-control" placeholder="Software Engineering Internship / Research / Project" required />
+              </div>
+              <div class="form-group">
+                <label for="cf-message">MESSAGE_PAYLOAD</label>
+                <textarea id="cf-message" rows="4" class="form-control" placeholder="Hi Mehedi, I'd love to connect regarding..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" style="width: 100%;">
+                🚀 Transmit Message to mhbhuiyan2004@gmail.com
+              </button>
+              <p id="cf-status" style="display: none; margin-top: 0.75rem; font-family: var(--font-mono); font-size: 0.8rem; color: #34D399;"></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ======================= ARCHITECTURE DEEP-DIVE MODALS ======================= -->
+
+  <!-- Modal 1: Fix_my_city -->
+  <dialog id="modal-fix-my-city" class="arch-dialog" aria-labelledby="title-fix-my-city">
+    <div class="modal-header">
+      <h3 id="title-fix-my-city">🏙️ Fix_my_city — System Architecture &amp; Pipeline</h3>
+      <button type="button" class="modal-close" aria-label="Close modal">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="arch-diagram">[Citizen Reporter Upload]
+        │
+        ▼
+┌──────────────────────────────────────────────────────────┐
+│ Hybrid AI &amp; Spam Forensic Filter                         │
+│  ├─ 1. Camera Hardware EXIF Fast-Path Verification       │
+│  └─ 2. Binary Header &amp; Noise Analysis (Blocks Midjourney)│
+└──────────────────────────────────────────────────────────┘
+        │
+        ▼
+┌──────────────────────────────────────────────────────────┐
+│ GIS &amp; Municipal Ward Routing (DNCC / DSCC)               │
+│  ├─ Leaflet.js Multi-Layer Interactive Map               │
+│  └─ OpenStreetMap Nominatim Reverse Geocoding            │
+└──────────────────────────────────────────────────────────┘
+        │
+        ├──► [Municipal Authority Triage Console] ──► Immutable StatusHistory Audit Trail
+        │
+        └──► [ReportLab Statutory PDF Engine]     ──► Official Legal Petition (Local Govt Act &amp; RTI Act 2009)</div>
+      <div class="arch-section-title">Key Engineering Decisions</div>
+      <p style="color: var(--text-secondary); font-size: 0.9rem;">
+        Built to prevent fake/AI-generated civic reports while empowering citizens with statutory PDF petitions watermarked with verified GPS coordinates and timestamps.
+      </p>
+      <div style="margin-top: 1.25rem; display: flex; gap: 0.75rem;">
+        <a href="https://fix-my-city-rouge-three.vercel.app/" target="_blank" rel="noopener" class="btn btn-primary btn-sm">🌐 Open Live Demo</a>
+        <a href="https://github.com/MEhe132/Fix_my_city" target="_blank" rel="noopener" class="btn btn-outline btn-sm">💻 View Source on GitHub</a>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Modal 2: Meal_management_web_app -->
+  <dialog id="modal-meal-app" class="arch-dialog" aria-labelledby="title-meal-app">
+    <div class="modal-header">
+      <h3 id="title-meal-app">🍽️ Plate &amp; Spoon (Meal_management_web_app) — System Architecture</h3>
+      <button type="button" class="modal-close" aria-label="Close modal">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="arch-diagram">[Hostel Members / Managers]
+        │
+        ├──► Real-Time Event Bus: MessageAnnouncer (threading.Lock() + SSE Stream)
+        │      └─ Instant Group Chat &amp; Live Slot-Lock Broadcasts (Zero Polling)
+        │
+        └──► High-Performance SQL Financial Engine (Flask + SQLAlchemy ORM)
+               ├─ Composite Indexes on (user_id, date, meal_status)
+               ├─ get_bulk_user_monthly_stats() ──► 100+ N+1 Queries reduced to 3-4 Queries
+               └─ Live Per-Meal Rate, Deposits, Shared Expenses &amp; Net Balance Ledger</div>
+      <div class="arch-section-title">Key Engineering Decisions</div>
+      <p style="color: var(--text-secondary); font-size: 0.9rem;">
+        Replaced traditional polling with a thread-safe Server-Sent Events (SSE) broadcaster and eliminated ORM N+1 bottlenecks using bulk SQL aggregations for sub-millisecond financial audits.
+      </p>
+      <div style="margin-top: 1.25rem; display: flex; gap: 0.75rem;">
+        <a href="https://fix-my-city-jotq.vercel.app/menu" target="_blank" rel="noopener" class="btn btn-primary btn-sm">🌐 Open Live App</a>
+        <a href="https://github.com/MEhe132/Meal_management_web_app" target="_blank" rel="noopener" class="btn btn-outline btn-sm">💻 View Source on GitHub</a>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Modal 3: Convert_php_to_usdt -->
+  <dialog id="modal-php-converter" class="arch-dialog" aria-labelledby="title-php-converter">
+    <div class="modal-header">
+      <h3 id="title-php-converter">🧮 Convert_php_to_usdt (v4.0.0) — OS Overlay Architecture</h3>
+      <button type="button" class="modal-close" aria-label="Close modal">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="arch-diagram">[Windows OS User32 / Shcore APIs via Python ctypes]
+        │
+        ├─ Global Hotkey Listener: Ctrl + / (Summon/Focus) | Ctrl + +/- (Live Opacity)
+        ├─ High-DPI Per-Monitor Scaling &amp; Frameless Always-On-Top Window
+        │
+        ├─ Screen Region Snipping Tool (Pillow / PIL) ──► Google Lens OCR Extraction
+        └─ Bidirectional PHP ⇄ USDT Math Engine + Integrated Quick Notepad (window_config.json)</div>
+      <div class="arch-section-title">Key Engineering Decisions</div>
+      <p style="color: var(--text-secondary); font-size: 0.9rem;">
+        Designed for zero-friction workflow while working or trading—combining low-level Win32 window management with instant OCR price capture and persistent JSON state.
+      </p>
+      <div style="margin-top: 1.25rem; display: flex; gap: 0.75rem;">
+        <a href="https://github.com/MEhe132/Convert_php_to_usdt/releases/tag/v4.0.0" target="_blank" rel="noopener" class="btn btn-primary btn-sm">🚀 View Release v4.0.0</a>
+        <a href="https://github.com/MEhe132/Convert_php_to_usdt" target="_blank" rel="noopener" class="btn btn-outline btn-sm">💻 View Source on GitHub</a>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Modal 4: Safe-Seller-Keep-Alive -->
+  <dialog id="modal-safe-seller" class="arch-dialog" aria-labelledby="title-safe-seller">
+    <div class="modal-header">
+      <h3 id="title-safe-seller">🛡️ Safe-Seller-Keep-Alive (v1.3.0) — Manifest V3 Architecture</h3>
+      <button type="button" class="modal-close" aria-label="Close modal">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="arch-diagram">[Manifest V3 Background Service Worker]
+        │
+        ├─ Randomized Jitter Scheduler (chrome.alarms: 600s–1000s interval, 60s safety floor)
+        ├─ Hardware Wake-Lock Engine (chrome.power 'display' lock + 24s heartbeat)
+        ├─ Boot/Resume Auto-Recovery (Detects expired timers after PC shutdown/restart)
+        └─ Pre-Refresh Safeguard Inspector
+             ├─ Checks G2G &amp; U7BUY Tab URL / Title for Cloudflare Challenge or Login Redirect
+             └─ Auto-Pauses &amp; Alerts Seller if Challenge Detected (Zero Focus Stealing)</div>
+      <div class="arch-section-title">Key Engineering Decisions</div>
+      <p style="color: var(--text-secondary); font-size: 0.9rem;">
+        Engineered specifically for Manifest V3 service worker lifecycles—ensuring timers survive browser restarts and preventing Windows S0 Modern Standby from dropping seller status.
+      </p>
+      <div style="margin-top: 1.25rem; display: flex; gap: 0.75rem;">
+        <a href="https://github.com/MEhe132/Safe-Seller-Keep-Alive/releases/tag/v1.3.0" target="_blank" rel="noopener" class="btn btn-primary btn-sm">🚀 View Release v1.3.0</a>
+        <a href="https://github.com/MEhe132/Safe-Seller-Keep-Alive" target="_blank" rel="noopener" class="btn btn-outline btn-sm">💻 View Source on GitHub</a>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- ======================= FOOTER ======================= -->
+  <footer class="footer">
+    <div class="container">
+      <p>
+        ⚡ Engineered by <strong>Mehedi Hasan (<a href="https://github.com/MEhe132" target="_blank" rel="noopener" style="color: var(--cyan); text-decoration: none;">@MEhe132</a>)</strong> ·
+        B.Sc. in CSE &amp; Undergraduate Research Assistant @ <strong>FEC CSE Research Lab</strong>
+      </p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
