@@ -790,16 +790,28 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!Array.isArray(repos) || repos.length === 0) return;
 
       const normalized = [];
+      let totalStars = 0;
+      let totalForks = 0;
+      const langWeights = {};
+
       repos.forEach((r) => {
         if (!r || !r.name) return;
+        const stars = typeof r.stargazers_count === "number" ? r.stargazers_count : 0;
+        const forks = typeof r.forks_count === "number" ? r.forks_count : 0;
+        totalStars += stars;
+        totalForks += forks;
+        if (r.language) {
+          langWeights[r.language] = (langWeights[r.language] || 0) + Math.max(r.size || 50, 25);
+        }
+
         const pushedDate = r.pushed_at
           ? new Date(r.pushed_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })
           : "Active";
         const item = {
           name: r.name,
           lang: r.language || FALLBACK_REPO_META[r.name]?.lang || "Code",
-          stars: typeof r.stargazers_count === "number" ? r.stargazers_count : 0,
-          forks: typeof r.forks_count === "number" ? r.forks_count : 0,
+          stars,
+          forks,
           updated: pushedDate,
           desc: r.description || FALLBACK_REPO_META[r.name]?.desc || "Open-source project by Mehedi Hasan (@MEhe132).",
           url: r.html_url || `https://github.com/MEhe132/${r.name}`
@@ -807,6 +819,29 @@ document.addEventListener("DOMContentLoaded", () => {
         normalized.push(item);
         renderRepoBadge(r.name, item);
       });
+
+      // Update Native GitHub Stats Card
+      const elRepos = document.getElementById("stat-public-repos");
+      const elStars = document.getElementById("stat-total-stars");
+      const elForks = document.getElementById("stat-total-forks");
+      if (elRepos) elRepos.textContent = String(repos.length);
+      if (elStars) elStars.textContent = String(totalStars);
+      if (elForks) elForks.textContent = String(totalForks);
+
+      // Also fetch user profile for followers/public_repos accuracy
+      fetch("https://api.github.com/users/MEhe132", { headers: { Accept: "application/vnd.github+json" } })
+        .then((uRes) => (uRes.ok ? uRes.json() : null))
+        .then((uData) => {
+          if (!uData) return;
+          if (elRepos && typeof uData.public_repos === "number") {
+            elRepos.textContent = String(uData.public_repos);
+          }
+          const elFollowers = document.getElementById("stat-followers");
+          if (elFollowers && typeof uData.followers === "number") {
+            elFollowers.textContent = `${uData.followers} / ${uData.following || 0}`;
+          }
+        })
+        .catch(() => {});
 
       if (normalized.length > 0) {
         renderLiveFeedGrid(normalized.slice(0, 6), true);

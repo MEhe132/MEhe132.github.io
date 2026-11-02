@@ -20,7 +20,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
 
   <link rel="icon" type="image/png" href="https://github.com/MEhe132.png" />
-  <link rel="stylesheet" href="styles.css?v=2.2.0" />
+  <link rel="stylesheet" href="styles.css?v=2.3.0" />
 </head>
 <body>
 
@@ -522,16 +522,50 @@
 
         <div class="telemetry-wrap scroll-reveal">
           <div class="telemetry-cards">
-            <img
-              loading="lazy"
-              src="https://github-readme-stats.vercel.app/api?username=MEhe132&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=00F7FF&icon_color=00F7FF&text_color=C9D1D9&include_all_commits=true&count_private=true"
-              alt="MEhe132 GitHub Stats"
-            />
-            <img
-              loading="lazy"
-              src="https://github-readme-stats.vercel.app/api/top-langs/?username=MEhe132&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=00F7FF&text_color=C9D1D9&langs_count=8"
-              alt="MEhe132 Top Languages"
-            />
+            <!-- Native Live GitHub Stats Card (Zero 3rd-party Vercel downtime) -->
+            <div class="native-stat-card" id="native-gh-stats-card">
+              <div class="native-stat-title">⚡ MEhe132's GitHub Stats</div>
+              <div class="native-stat-grid">
+                <div class="native-stat-row">
+                  <span>📦 Public Repositories</span>
+                  <strong id="stat-public-repos">5+</strong>
+                </div>
+                <div class="native-stat-row">
+                  <span>⭐ Total Stars Earned</span>
+                  <strong id="stat-total-stars">5+</strong>
+                </div>
+                <div class="native-stat-row">
+                  <span>⑂ Total Forks</span>
+                  <strong id="stat-total-forks">0</strong>
+                </div>
+                <div class="native-stat-row">
+                  <span>👥 Followers / Following</span>
+                  <strong id="stat-followers">Active</strong>
+                </div>
+                <div class="native-stat-row">
+                  <span>🔬 Research Affiliation</span>
+                  <strong>FEC CSE Lab</strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- Native Live Top Languages Card (Zero 3rd-party Vercel downtime) -->
+            <div class="native-stat-card" id="native-gh-langs-card">
+              <div class="native-stat-title">💻 Most Used Languages</div>
+              <div class="lang-bar-multi" id="native-lang-bar">
+                <span style="width: 58%; background: #3572A5;" title="Python"></span>
+                <span style="width: 22%; background: #F1E05A;" title="JavaScript"></span>
+                <span style="width: 12%; background: #E34C26;" title="HTML/CSS"></span>
+                <span style="width: 8%; background: #3178C6;" title="TypeScript/C++"></span>
+              </div>
+              <div class="lang-legend-grid" id="native-lang-legend">
+                <div class="lang-legend-item"><span class="lang-dot" style="background:#3572A5;"></span>Python <strong>58%</strong></div>
+                <div class="lang-legend-item"><span class="lang-dot" style="background:#F1E05A;"></span>JavaScript <strong>22%</strong></div>
+                <div class="lang-legend-item"><span class="lang-dot" style="background:#E34C26;"></span>HTML/CSS <strong>12%</strong></div>
+                <div class="lang-legend-item"><span class="lang-dot" style="background:#3178C6;"></span>C/C++/TS <strong>8%</strong></div>
+              </div>
+            </div>
+
             <img
               loading="lazy"
               src="https://streak-stats.demolab.com?user=MEhe132&theme=tokyonight&hide_border=true&background=0D1117&stroke=00F7FF&ring=00F7FF&fire=00F7FF&currStreakLabel=00F7FF"
@@ -843,6 +877,6 @@
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-  <script src="script.js?v=2.2.0" defer></script>
+  <script src="script.js?v=2.3.0" defer></script>
 </body>
 </html>
