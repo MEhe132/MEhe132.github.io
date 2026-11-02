@@ -365,13 +365,17 @@ section {
 
 .hero-typing-wrap {
   font-family: var(--font-mono);
-  font-size: 1.05rem;
+  font-size: clamp(0.84rem, 1.45vw, 1.02rem);
   color: var(--cyan);
-  min-height: 1.8rem;
+  height: 3.35rem;
+  min-height: 3.35rem;
+  max-height: 3.35rem;
   margin-bottom: 1rem;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.4rem;
+  line-height: 1.55;
+  overflow: hidden;
 }
 
 .hero-bio {
@@ -1285,6 +1289,93 @@ dialog.cmdk-modal {
 .scroll-reveal.io-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ==========================================================================
+   THEME MODES (TRIGGERED VIA CTRL+K COMMAND PALETTE):
+   1. Default: Cyber Dark Mode
+   2. [data-theme="white"] (White / Clean Light Mode)
+   3. [data-theme="negative"] (Negative / Inverted Cyber Mode)
+   ========================================================================== */
+html[data-theme="white"] {
+  color-scheme: light;
+  --bg-primary: #F8FAFC;
+  --bg-secondary: #EEF2F6;
+  --bg-tertiary: #E2E8F0;
+  --bg-glass: rgba(255, 255, 255, 0.88);
+  --cyan: #0284C7;
+  --cyan-dim: rgba(2, 132, 199, 0.1);
+  --cyan-glow: rgba(2, 132, 199, 0.25);
+  --text-main: #0F172A;
+  --text-secondary: #334155;
+  --text-muted: #64748B;
+  --border-subtle: rgba(15, 23, 42, 0.12);
+  --border-cyan: rgba(2, 132, 199, 0.42);
+}
+
+html[data-theme="white"] body {
+  background-color: var(--bg-primary);
+  background-image:
+    radial-gradient(circle at 15% 15%, rgba(2, 132, 199, 0.08) 0%, transparent 35%),
+    radial-gradient(circle at 85% 75%, rgba(168, 85, 247, 0.06) 0%, transparent 35%),
+    linear-gradient(rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+}
+
+html[data-theme="white"] .navbar {
+  background: rgba(248, 250, 252, 0.88);
+}
+
+html[data-theme="white"] .btn-primary {
+  color: #FFFFFF;
+}
+
+html[data-theme="white"] .terminal-card,
+html[data-theme="white"] .snake-box,
+html[data-theme="white"] .arch-diagram,
+html[data-theme="white"] .form-control {
+  background: #0F172A;
+  color: #E2E8F0;
+}
+
+html[data-theme="white"] .terminal-header,
+html[data-theme="white"] .cmdk-search-bar {
+  background: #1E293B;
+}
+
+html[data-theme="white"] .terminal-input-row,
+html[data-theme="white"] .cmdk-footer {
+  background: #090D16;
+}
+
+html[data-theme="white"] .terminal-input,
+html[data-theme="white"] .cmdk-input {
+  color: #F8FAFC;
+}
+
+html[data-theme="white"] dialog.arch-dialog {
+  background: #FFFFFF;
+  color: var(--text-main);
+}
+
+html[data-theme="white"] .repo-live-telemetry,
+html[data-theme="white"] .pillar-item {
+  background: rgba(241, 245, 249, 0.9);
+}
+
+html[data-theme="white"] .floating-cmdk-btn {
+  background: rgba(255, 255, 255, 0.95);
+  color: #0F172A;
+}
+
+/* Negative Mode (Full High-Contrast Color Inversion while keeping photos natural or raw negative) */
+html[data-theme="negative"] {
+  filter: invert(1) hue-rotate(180deg);
+  background-color: #F2EEE8;
+}
+
+html[data-theme="negative"] .avatar-wrap img {
+  filter: invert(1) hue-rotate(180deg);
 }
 
 /* Responsive Breakpoints */

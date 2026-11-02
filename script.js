@@ -60,6 +60,9 @@ document.addEventListener("DOMContentLoaded", () => {
 <div class="term-line">  <span class="term-key">skills</span>     — Print core programming languages &amp; frameworks</div>
 <div class="term-line">  <span class="term-key">resume</span>     — Open / download Mehedi_Hasan_Resume.pdf</div>
 <div class="term-line">  <span class="term-key">contact</span>    — Show direct communication channels</div>
+<div class="term-line">  <span class="term-key">white</span>      — Switch to White Mode (Clean Light Theme)</div>
+<div class="term-line">  <span class="term-key">negative</span>   — Switch to Negative Mode (Inverted Cyber Theme)</div>
+<div class="term-line">  <span class="term-key">dark</span>       — Switch to Default Cyber Dark Mode</div>
 <div class="term-line">  <span class="term-key">cmdk</span>       — Launch the VS Code / Linear Command Palette (Ctrl+K)</div>
 <div class="term-line">  <span class="term-key">clear</span>      — Clear terminal buffer</div>`,
 
@@ -110,6 +113,21 @@ document.addEventListener("DOMContentLoaded", () => {
     cmdk: () => {
       openCommandPalette();
       return `<div class="term-line"><span class="term-string">✔ Opened Command Palette (Ctrl + K)</span></div>`;
+    },
+
+    white: () => {
+      applyPortfolioTheme("white");
+      return `<div class="term-line"><span class="term-string">☀️ Switched to White Mode (Clean Light Theme)</span></div>`;
+    },
+
+    negative: () => {
+      applyPortfolioTheme("negative");
+      return `<div class="term-line"><span class="term-string">🌗 Switched to Negative Mode (Inverted Cyber Theme)</span></div>`;
+    },
+
+    dark: () => {
+      applyPortfolioTheme("dark");
+      return `<div class="term-line"><span class="term-string">🌙 Switched to Default Cyber Dark Mode</span></div>`;
     }
   };
 
@@ -320,7 +338,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // --------------------------------------------------------------------------
-  // 6. SPECIAL FEATURE 2: VS Code / Linear Style Command Palette (Ctrl + K)
+  // 6. SPECIAL FEATURE 2: VS Code / Linear Style Command Palette (Ctrl + K) + Theme Engine
   // --------------------------------------------------------------------------
   const cmdkDialog = document.getElementById("cmdk-dialog");
   const cmdkInput = document.getElementById("cmdk-input");
@@ -328,7 +346,50 @@ document.addEventListener("DOMContentLoaded", () => {
   const floatingCmdkBtn = document.getElementById("floating-cmdk-trigger");
   const heroCmdkBtn = document.getElementById("hero-cmdk-btn");
 
+  function applyPortfolioTheme(mode) {
+    if (mode === "white" || mode === "negative") {
+      document.documentElement.setAttribute("data-theme", mode);
+      try {
+        localStorage.setItem("mehe132_theme", mode);
+      } catch {}
+    } else {
+      document.documentElement.removeAttribute("data-theme");
+      try {
+        localStorage.removeItem("mehe132_theme");
+      } catch {}
+    }
+  }
+
+  // Restore saved theme if user selected one previously
+  try {
+    const savedTheme = localStorage.getItem("mehe132_theme");
+    if (savedTheme === "white" || savedTheme === "negative") {
+      applyPortfolioTheme(savedTheme);
+    }
+  } catch {}
+
   const PALETTE_ACTIONS = [
+    {
+      title: "Switch to White Mode (Clean Light Theme)",
+      tag: "Theme",
+      icon: "☀️",
+      keywords: "white mode light theme bright day",
+      run: () => applyPortfolioTheme("white")
+    },
+    {
+      title: "Switch to Negative Mode (Inverted Cyber Theme)",
+      tag: "Theme",
+      icon: "🌗",
+      keywords: "negative mode invert high contrast theme",
+      run: () => applyPortfolioTheme("negative")
+    },
+    {
+      title: "Switch to Cyber Dark Mode (Default Theme)",
+      tag: "Theme",
+      icon: "🌙",
+      keywords: "dark mode default cyber tokyo night reset theme",
+      run: () => applyPortfolioTheme("dark")
+    },
     {
       title: "Download CV / Resume (Reverse-Chronological PDF)",
       tag: "PDF / CV",
