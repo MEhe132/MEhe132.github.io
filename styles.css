@@ -365,17 +365,28 @@ section {
 
 .hero-typing-wrap {
   font-family: var(--font-mono);
-  font-size: clamp(0.84rem, 1.45vw, 1.02rem);
+  font-size: clamp(0.76rem, 1.05vw, 0.92rem);
   color: var(--cyan);
-  height: 3.35rem;
-  min-height: 3.35rem;
-  max-height: 3.35rem;
+  height: 1.75rem;
+  min-height: 1.75rem;
+  max-height: 1.75rem;
   margin-bottom: 1rem;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 0.4rem;
-  line-height: 1.55;
+  line-height: 1.75rem;
+  white-space: nowrap;
   overflow: hidden;
+  width: 100%;
+}
+
+.hero-typing-prefix {
+  flex-shrink: 0;
+}
+
+#hero-typing-text {
+  display: inline;
+  white-space: nowrap;
 }
 
 .hero-bio {

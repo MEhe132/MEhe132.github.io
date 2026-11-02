@@ -8,9 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // 1. Dynamic Typing Effect in Hero
   // --------------------------------------------------------------------------
   const roles = [
-    "Python / Automation & Full-Stack Tooling Developer",
-    "Undergraduate Research Assistant @ FEC CSE Research Lab",
-    "Systems Builder: Web Apps, Win32 Overlays & Browser Extensions",
+    "Python, Automation & Full-Stack Tooling Developer",
+    "Research Assistant @ FEC CSE Research Lab",
+    "Systems Builder: Web Apps, Win32 & Extensions",
     "B.Sc. in Computer Science & Engineering @ FEC"
   ];
   const typingTarget = document.getElementById("hero-typing-text");
