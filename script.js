@@ -245,96 +245,187 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // --------------------------------------------------------------------------
-  // 5. SPECIAL FEATURE 1: Interactive Cyber-Network Constellation Canvas
+  // 5. SPECIAL FEATURE 1: 3D Interactive Cyber Particle / Neural Network (Three.js WebGL + 2D Fallback)
   // --------------------------------------------------------------------------
   const canvas = document.getElementById("cyber-network-canvas");
-  if (canvas && canvas.getContext) {
-    const ctx = canvas.getContext("2d");
-    let width = 0;
-    let height = 0;
-    let particles = [];
-    const mouse = { x: -9999, y: -9999 };
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    function resizeCanvas() {
-      const heroEl = canvas.parentElement;
-      width = canvas.width = heroEl ? heroEl.clientWidth : window.innerWidth;
-      height = canvas.height = heroEl ? heroEl.clientHeight : 560;
-      const count = Math.min(55, Math.max(24, Math.floor((width * height) / 16000)));
-      particles = Array.from({ length: count }, () => ({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.45,
-        vy: (Math.random() - 0.5) * 0.45,
-        r: Math.random() * 1.6 + 1
-      }));
+  if (canvas && typeof window.THREE !== "undefined") {
+    const THREE = window.THREE;
+    const heroEl = canvas.parentElement;
+    let width = heroEl ? heroEl.clientWidth : window.innerWidth;
+    let height = heroEl ? heroEl.clientHeight : 600;
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(60, width / height, 1, 1000);
+    camera.position.z = 240;
+
+    let renderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    } catch {
+      renderer = null;
     }
 
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
+    if (renderer) {
+      const group = new THREE.Group();
+      scene.add(group);
 
-    const heroSection = canvas.parentElement;
-    if (heroSection) {
-      heroSection.addEventListener("mousemove", (e) => {
-        const rect = canvas.getBoundingClientRect();
-        mouse.x = e.clientX - rect.left;
-        mouse.y = e.clientY - rect.top;
+      // 1. 3D Wireframe Cyber Icosahedron Core on the right/center depth
+      const icoGeo = new THREE.IcosahedronGeometry(95, 1);
+      const icoMat = new THREE.MeshBasicMaterial({
+        color: 0x00f7ff,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.14
       });
-      heroSection.addEventListener("mouseleave", () => {
-        mouse.x = -9999;
-        mouse.y = -9999;
+      const icoMesh = new THREE.Mesh(icoGeo, icoMat);
+      group.add(icoMesh);
+
+      // 2. 3D Neural Particle Cloud & Synaptic Connecting Lines
+      const nodeCount = 72;
+      const positions = new Float32Array(nodeCount * 3);
+      const velocities = [];
+      const spread = 380;
+
+      for (let i = 0; i < nodeCount; i++) {
+        positions[i * 3] = (Math.random() - 0.5) * spread * 1.4;
+        positions[i * 3 + 1] = (Math.random() - 0.5) * spread * 0.85;
+        positions[i * 3 + 2] = (Math.random() - 0.5) * 180;
+        velocities.push({
+          vx: (Math.random() - 0.5) * 0.28,
+          vy: (Math.random() - 0.5) * 0.28,
+          vz: (Math.random() - 0.5) * 0.22
+        });
+      }
+
+      const nodesGeo = new THREE.BufferGeometry();
+      nodesGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+
+      const nodesMat = new THREE.PointsMaterial({
+        color: 0x00f7ff,
+        size: 3.8,
+        transparent: true,
+        opacity: 0.85
       });
-    }
+      const pointsMesh = new THREE.Points(nodesGeo, nodesMat);
+      group.add(pointsMesh);
 
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const lineMat = new THREE.LineBasicMaterial({
+        color: 0x00f7ff,
+        transparent: true,
+        opacity: 0.22
+      });
+      const maxSegments = nodeCount * nodeCount;
+      const linePositions = new Float32Array(maxSegments * 6);
+      const lineGeo = new THREE.BufferGeometry();
+      lineGeo.setAttribute("position", new THREE.BufferAttribute(linePositions, 3));
+      const linesMesh = new THREE.LineSegments(lineGeo, lineMat);
+      group.add(linesMesh);
 
-    function renderNetwork() {
-      ctx.clearRect(0, 0, width, height);
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
+      let targetRotX = 0;
+      let targetRotY = 0;
+
+      if (heroEl) {
+        heroEl.addEventListener("mousemove", (e) => {
+          const rect = heroEl.getBoundingClientRect();
+          const normX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+          const normY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+          targetRotY = normX * 0.55;
+          targetRotX = normY * 0.35;
+        });
+        heroEl.addEventListener("mouseleave", () => {
+          targetRotX = 0;
+          targetRotY = 0;
+        });
+      }
+
+      window.addEventListener("resize", () => {
+        if (!heroEl) return;
+        width = heroEl.clientWidth;
+        height = heroEl.clientHeight;
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(width, height);
+      });
+
+      function animateThree() {
         if (!prefersReducedMotion) {
-          p.x += p.vx;
-          p.y += p.vy;
-          if (p.x < 0 || p.x > width) p.vx *= -1;
-          if (p.y < 0 || p.y > height) p.vy *= -1;
-        }
+          icoMesh.rotation.x += 0.0022;
+          icoMesh.rotation.y += 0.0035;
 
+          group.rotation.y += (targetRotY - group.rotation.y) * 0.06;
+          group.rotation.x += (targetRotX - group.rotation.x) * 0.06;
+
+          const posAttr = nodesGeo.attributes.position.array;
+          let segIdx = 0;
+
+          for (let i = 0; i < nodeCount; i++) {
+            const ix = i * 3;
+            posAttr[ix] += velocities[i].vx;
+            posAttr[ix + 1] += velocities[i].vy;
+            posAttr[ix + 2] += velocities[i].vz;
+
+            if (Math.abs(posAttr[ix]) > spread * 0.7) velocities[i].vx *= -1;
+            if (Math.abs(posAttr[ix + 1]) > spread * 0.45) velocities[i].vy *= -1;
+            if (Math.abs(posAttr[ix + 2]) > 95) velocities[i].vz *= -1;
+
+            for (let j = i + 1; j < nodeCount; j++) {
+              const jx = j * 3;
+              const dx = posAttr[ix] - posAttr[jx];
+              const dy = posAttr[ix + 1] - posAttr[jx + 1];
+              const dz = posAttr[ix + 2] - posAttr[jx + 2];
+              const distSq = dx * dx + dy * dy + dz * dz;
+              if (distSq < 88 * 88) {
+                linePositions[segIdx++] = posAttr[ix];
+                linePositions[segIdx++] = posAttr[ix + 1];
+                linePositions[segIdx++] = posAttr[ix + 2];
+                linePositions[segIdx++] = posAttr[jx];
+                linePositions[segIdx++] = posAttr[jx + 1];
+                linePositions[segIdx++] = posAttr[jx + 2];
+              }
+            }
+          }
+          nodesGeo.attributes.position.needsUpdate = true;
+          lineGeo.setDrawRange(0, segIdx / 3);
+          lineGeo.attributes.position.needsUpdate = true;
+        }
+        renderer.render(scene, camera);
+        if (!prefersReducedMotion) {
+          requestAnimationFrame(animateThree);
+        }
+      }
+      animateThree();
+    }
+  } else if (canvas && canvas.getContext) {
+    // 2D Canvas Fallback if Three.js CDN is blocked/offline
+    const ctx = canvas.getContext("2d");
+    let width = (canvas.width = canvas.parentElement?.clientWidth || window.innerWidth);
+    let height = (canvas.height = canvas.parentElement?.clientHeight || 560);
+    const particles = Array.from({ length: 45 }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.5,
+      vy: (Math.random() - 0.5) * 0.5,
+      r: 2
+    }));
+    function drawFallback() {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach((p) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(0, 247, 255, 0.55)";
+        ctx.fillStyle = "rgba(0, 247, 255, 0.7)";
         ctx.fill();
-
-        for (let j = i + 1; j < particles.length; j++) {
-          const p2 = particles[j];
-          const dx = p.x - p2.x;
-          const dy = p.y - p2.y;
-          const dist = Math.hypot(dx, dy);
-          if (dist < 125) {
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(0, 247, 255, ${(1 - dist / 125) * 0.16})`;
-            ctx.lineWidth = 1;
-            ctx.stroke();
-          }
-        }
-
-        const mdx = p.x - mouse.x;
-        const mdy = p.y - mouse.y;
-        const mdist = Math.hypot(mdx, mdy);
-        if (mdist < 160) {
-          ctx.beginPath();
-          ctx.moveTo(p.x, p.y);
-          ctx.lineTo(mouse.x, mouse.y);
-          ctx.strokeStyle = `rgba(0, 247, 255, ${(1 - mdist / 160) * 0.38})`;
-          ctx.lineWidth = 1.2;
-          ctx.stroke();
-        }
-      }
-      if (!prefersReducedMotion) {
-        requestAnimationFrame(renderNetwork);
-      }
+      });
+      if (!prefersReducedMotion) requestAnimationFrame(drawFallback);
     }
-    renderNetwork();
+    drawFallback();
   }
 
   // --------------------------------------------------------------------------
@@ -586,54 +677,157 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // --------------------------------------------------------------------------
-  // 7. SPECIAL FEATURE 3: Live GitHub Repository Telemetry Fetcher
+  // 7. SPECIAL FEATURE 3: Live GitHub API Repository Fetcher (Cards + Live Feed Grid)
   // --------------------------------------------------------------------------
   const FALLBACK_REPO_META = {
-    Fix_my_city: { lang: "Python", stars: 1, forks: 0, updated: "Active 2026", sizeKb: 420 },
-    Meal_management_web_app: { lang: "Python", stars: 1, forks: 0, updated: "Active 2026", sizeKb: 380 },
-    Convert_php_to_usdt: { lang: "Python", stars: 1, forks: 0, updated: "Release v4.0.0", sizeKb: 145 },
-    "Safe-Seller-Keep-Alive": { lang: "JavaScript", stars: 1, forks: 0, updated: "Release v1.3.0", sizeKb: 85 }
+    Fix_my_city: {
+      lang: "Python",
+      stars: 1,
+      forks: 0,
+      updated: "Active 2026",
+      sizeKb: 420,
+      desc: "Bangladesh Civic Infrastructure Issue Tracker & GIS Platform with EXIF/AI verification and ReportLab PDF petitions.",
+      url: "https://github.com/MEhe132/Fix_my_city"
+    },
+    Meal_management_web_app: {
+      lang: "Python",
+      stars: 1,
+      forks: 0,
+      updated: "Active 2026",
+      sizeKb: 380,
+      desc: "Real-Time Hostel Meal & Financial Auditing System (Plate & Spoon) powered by Flask, SQLAlchemy & SSE.",
+      url: "https://github.com/MEhe132/Meal_management_web_app"
+    },
+    Convert_php_to_usdt: {
+      lang: "Python",
+      stars: 1,
+      forks: 0,
+      updated: "Release v4.0.0",
+      sizeKb: 145,
+      desc: "Frameless Win32 Desktop PHP ⇄ USDT Currency & Google Lens OCR Calculator Overlay.",
+      url: "https://github.com/MEhe132/Convert_php_to_usdt"
+    },
+    "Safe-Seller-Keep-Alive": {
+      lang: "JavaScript",
+      stars: 1,
+      forks: 0,
+      updated: "Release v1.3.0",
+      sizeKb: 85,
+      desc: "Stealth Session Keep-Alive Browser Extension (Manifest V3) for G2G & U7BUY with wake-lock & Cloudflare guard.",
+      url: "https://github.com/MEhe132/Safe-Seller-Keep-Alive"
+    },
+    "MEhe132.github.io": {
+      lang: "HTML/CSS/JS",
+      stars: 1,
+      forks: 0,
+      updated: "Live Pages",
+      sizeKb: 120,
+      desc: "Personal Developer & CSE Research Portfolio of Mehedi Hasan (@MEhe132) — Live at https://mehe132.github.io",
+      url: "https://github.com/MEhe132/MEhe132.github.io"
+    }
   };
 
   function renderRepoBadge(repoName, data) {
     const slot = document.querySelector(`[data-repo-meta="${repoName}"]`);
     if (!slot) return;
     slot.innerHTML = `
-      <span class="repo-stat">● <strong>${data.lang}</strong></span>
-      <span class="repo-stat">★ <strong>${data.stars}</strong></span>
-      <span class="repo-stat">⑂ <strong>${data.forks}</strong></span>
-      <span class="repo-stat">🕒Sync: <strong>${data.updated}</strong></span>
+      <span class="repo-stat">● <strong>${escapeHtml(String(data.lang))}</strong></span>
+      <span class="repo-stat">★ <strong>${escapeHtml(String(data.stars))}</strong></span>
+      <span class="repo-stat">⑂ <strong>${escapeHtml(String(data.forks))}</strong></span>
+      <span class="repo-stat">🕒 Pushed: <strong>${escapeHtml(String(data.updated))}</strong></span>
     `;
   }
 
+  function renderLiveFeedGrid(repoList, isLiveApi = false) {
+    const gridEl = document.getElementById("gh-live-repos-grid");
+    const statusEl = document.getElementById("gh-api-status-text");
+    if (!gridEl) return;
+
+    if (statusEl) {
+      const nowStr = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+      statusEl.textContent = isLiveApi
+        ? `✔ Connected to api.github.com/users/MEhe132/repos · Showing ${repoList.length} public repositories (Synced at ${nowStr})`
+        : `⚡ Displaying cached repository snapshot (${repoList.length} repositories)`;
+    }
+
+    gridEl.innerHTML = repoList
+      .map(
+        (r) => `
+      <a href="${escapeHtml(r.url)}" target="_blank" rel="noopener" class="live-repo-card">
+        <div>
+          <div class="live-repo-name">
+            <span>📦 ${escapeHtml(r.name)}</span>
+            <span style="font-size: 0.75rem; color: var(--text-muted);">↗</span>
+          </div>
+          <p class="live-repo-desc">${escapeHtml(r.desc || "Public engineering repository by @MEhe132.")}</p>
+        </div>
+        <div class="live-repo-meta">
+          <span>● <strong style="color: var(--cyan);">${escapeHtml(String(r.lang))}</strong></span>
+          <span>★ <strong>${escapeHtml(String(r.stars))}</strong></span>
+          <span>⑂ <strong>${escapeHtml(String(r.forks))}</strong></span>
+          <span>🕒 ${escapeHtml(String(r.updated))}</span>
+        </div>
+      </a>`
+      )
+      .join("");
+  }
+
   async function hydrateGitHubTelemetry() {
-    // Render instant defaults first so there's zero layout flicker
+    // 1. Render instant defaults first so there's zero layout flicker
     Object.entries(FALLBACK_REPO_META).forEach(([name, meta]) => renderRepoBadge(name, meta));
+    renderLiveFeedGrid(
+      Object.entries(FALLBACK_REPO_META).map(([name, meta]) => ({ name, ...meta })),
+      false
+    );
+
+    // 2. Fetch live from GitHub REST API
     try {
-      const res = await fetch("https://api.github.com/users/MEhe132/repos?per_page=100", {
+      const res = await fetch("https://api.github.com/users/MEhe132/repos?sort=pushed&per_page=12", {
         headers: { Accept: "application/vnd.github+json" }
       });
       if (!res.ok) return;
       const repos = await res.json();
-      if (!Array.isArray(repos)) return;
+      if (!Array.isArray(repos) || repos.length === 0) return;
 
+      const normalized = [];
       repos.forEach((r) => {
         if (!r || !r.name) return;
         const pushedDate = r.pushed_at
           ? new Date(r.pushed_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })
           : "Active";
-        renderRepoBadge(r.name, {
+        const item = {
+          name: r.name,
           lang: r.language || FALLBACK_REPO_META[r.name]?.lang || "Code",
-          stars: typeof r.stargazers_count === "number" ? r.stargazers_count : 1,
+          stars: typeof r.stargazers_count === "number" ? r.stargazers_count : 0,
           forks: typeof r.forks_count === "number" ? r.forks_count : 0,
-          updated: pushedDate
-        });
+          updated: pushedDate,
+          desc: r.description || FALLBACK_REPO_META[r.name]?.desc || "Open-source project by Mehedi Hasan (@MEhe132).",
+          url: r.html_url || `https://github.com/MEhe132/${r.name}`
+        };
+        normalized.push(item);
+        renderRepoBadge(r.name, item);
       });
+
+      if (normalized.length > 0) {
+        renderLiveFeedGrid(normalized.slice(0, 6), true);
+      }
     } catch {
       // Silently keep fallback telemetry if offline or rate-limited
     }
   }
   hydrateGitHubTelemetry();
+
+  const refreshBtn = document.getElementById("gh-api-refresh-btn");
+  if (refreshBtn) {
+    refreshBtn.addEventListener("click", () => {
+      refreshBtn.textContent = "⏳ Syncing...";
+      hydrateGitHubTelemetry().finally(() => {
+        setTimeout(() => {
+          refreshBtn.textContent = "🔄 Refresh API Now";
+        }, 400);
+      });
+    });
+  }
 
   // --------------------------------------------------------------------------
   // 8. SPECIAL FEATURE 4: 3D Interactive Card Tilt + Scroll Reveal Fallback

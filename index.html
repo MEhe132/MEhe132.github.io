@@ -20,7 +20,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
 
   <link rel="icon" type="image/png" href="https://github.com/MEhe132.png" />
-  <link rel="stylesheet" href="styles.css?v=2.1.0" />
+  <link rel="stylesheet" href="styles.css?v=2.2.0" />
 </head>
 <body>
 
@@ -549,6 +549,27 @@
               alt="MEhe132 GitHub Contribution Grid Snake"
             />
           </div>
+
+          <!-- LIVE GITHUB API REPOSITORY FETCHER PANEL -->
+          <div class="live-api-panel">
+            <div class="live-api-header">
+              <div>
+                <h3 class="live-api-title">
+                  <span class="status-dot"></span>
+                  <span>Live GitHub REST API Feed (<code>api.github.com/users/MEhe132/repos</code>)</span>
+                </h3>
+                <p class="live-api-sub" id="gh-api-status-text">
+                  Fetching live public repositories, stars, forks, sizes &amp; push timestamps...
+                </p>
+              </div>
+              <button type="button" class="btn btn-outline btn-sm" id="gh-api-refresh-btn">
+                🔄 Refresh API Now
+              </button>
+            </div>
+            <div class="live-repos-grid" id="gh-live-repos-grid" aria-live="polite">
+              <!-- Populated live from api.github.com/users/MEhe132/repos -->
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -821,6 +842,7 @@
     </div>
   </footer>
 
-  <script src="script.js?v=2.1.0"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+  <script src="script.js?v=2.2.0" defer></script>
 </body>
 </html>
