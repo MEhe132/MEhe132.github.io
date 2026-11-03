@@ -102,6 +102,8 @@ document.addEventListener("DOMContentLoaded", () => {
     contact: () => `
 <div class="term-line">📧 Email:    <a class="term-link" href="mailto:mhbhuiyan2004@gmail.com">mhbhuiyan2004@gmail.com</a></div>
 <div class="term-line">💼 LinkedIn: <a class="term-link" href="https://www.linkedin.com/in/mehedi-hasan-a8bb362a1/" target="_blank" rel="noopener">linkedin.com/in/mehedi-hasan-a8bb362a1</a></div>
+<div class="term-line">🐙 GitHub:   <a class="term-link" href="https://github.com/MEhe132" target="_blank" rel="noopener">github.com/MEhe132</a></div>
+<div class="term-line">📘 Facebook: <a class="term-link" href="https://www.facebook.com/mjbhuiyan.2004.gmail#" target="_blank" rel="noopener">facebook.com/mjbhuiyan.2004.gmail</a></div>
 <div class="term-line">✈️ Telegram: <a class="term-link" href="https://t.me/Mh_13585" target="_blank" rel="noopener">@Mh_13585</a></div>
 <div class="term-line">🎮 Discord:  <span class="term-string">mh_13585</span></div>`,
 
@@ -589,6 +591,13 @@ document.addEventListener("DOMContentLoaded", () => {
       icon: "💼",
       keywords: "linkedin profile connect",
       run: () => window.open("https://www.linkedin.com/in/mehedi-hasan-a8bb362a1/", "_blank", "noopener")
+    },
+    {
+      title: "Open Facebook Profile (Mehedi Hasan)",
+      tag: "Social",
+      icon: "📘",
+      keywords: "facebook profile social mjbhuiyan connect",
+      run: () => window.open("https://www.facebook.com/mjbhuiyan.2004.gmail#", "_blank", "noopener")
     }
   ];
 

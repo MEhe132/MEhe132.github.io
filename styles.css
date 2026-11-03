@@ -1006,10 +1006,6 @@ section {
   margin-top: 1.5rem;
 }
 
-.social-cards .social-item:last-child {
-  grid-column: 1 / -1;
-}
-
 .social-item {
   display: flex;
   align-items: center;
@@ -1060,9 +1056,6 @@ section {
 @media (max-width: 768px) {
   .social-cards {
     grid-template-columns: 1fr;
-  }
-  .social-cards .social-item:last-child {
-    grid-column: auto;
   }
 }
 
