@@ -221,31 +221,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // --------------------------------------------------------------------------
-  // 4. Direct Contact Form Handler
-  // --------------------------------------------------------------------------
-  const contactForm = document.getElementById("portfolio-contact-form");
-  if (contactForm) {
-    contactForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const name = document.getElementById("cf-name").value.trim();
-      const email = document.getElementById("cf-email").value.trim();
-      const subject = document.getElementById("cf-subject").value.trim() || "Portfolio Inquiry";
-      const message = document.getElementById("cf-message").value.trim();
-
-      const body = `Hi Mehedi,\n\n${message}\n\n---\nFrom: ${name}\nEmail: ${email}`;
-      const mailtoUrl = `mailto:mhbhuiyan2004@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      window.location.href = mailtoUrl;
-
-      const statusEl = document.getElementById("cf-status");
-      if (statusEl) {
-        statusEl.textContent = "✔ Opening your email client with the pre-filled message to mhbhuiyan2004@gmail.com!";
-        statusEl.style.display = "block";
-      }
-    });
-  }
-
-  // --------------------------------------------------------------------------
-  // 5. SPECIAL FEATURE 1: 3D Interactive Cyber Particle / Neural Network (Three.js WebGL + 2D Fallback)
+  // 4. SPECIAL FEATURE 1: 3D Interactive Cyber Particle / Neural Network (Three.js WebGL + 2D Fallback)
   // --------------------------------------------------------------------------
   const canvas = document.getElementById("cyber-network-canvas");
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
