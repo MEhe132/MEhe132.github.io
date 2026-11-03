@@ -249,112 +249,115 @@ document.addEventListener("DOMContentLoaded", () => {
   // --------------------------------------------------------------------------
   const canvas = document.getElementById("cyber-network-canvas");
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const speedScale = prefersReducedMotion ? 0.35 : 1.0;
 
-  if (canvas && typeof window.THREE !== "undefined") {
-    const THREE = window.THREE;
-    const heroEl = canvas.parentElement;
-    let width = heroEl ? heroEl.clientWidth : window.innerWidth;
-    let height = heroEl ? heroEl.clientHeight : 600;
+  function initCyberNetwork() {
+    if (!canvas) return;
 
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(60, width / height, 1, 1000);
-    camera.position.z = 240;
+    if (typeof window.THREE !== "undefined") {
+      const THREE = window.THREE;
+      const heroEl = canvas.parentElement;
+      let width = heroEl ? heroEl.clientWidth : window.innerWidth;
+      let height = heroEl ? heroEl.clientHeight : 600;
 
-    let renderer;
-    try {
-      renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-      renderer.setSize(width, height);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-    } catch {
-      renderer = null;
-    }
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(60, width / height, 1, 1000);
+      camera.position.z = 240;
 
-    if (renderer) {
-      const group = new THREE.Group();
-      scene.add(group);
-
-      // 1. 3D Wireframe Cyber Icosahedron Core on the right/center depth
-      const icoGeo = new THREE.IcosahedronGeometry(95, 1);
-      const icoMat = new THREE.MeshBasicMaterial({
-        color: 0x00f7ff,
-        wireframe: true,
-        transparent: true,
-        opacity: 0.14
-      });
-      const icoMesh = new THREE.Mesh(icoGeo, icoMat);
-      group.add(icoMesh);
-
-      // 2. 3D Neural Particle Cloud & Synaptic Connecting Lines
-      const nodeCount = 72;
-      const positions = new Float32Array(nodeCount * 3);
-      const velocities = [];
-      const spread = 380;
-
-      for (let i = 0; i < nodeCount; i++) {
-        positions[i * 3] = (Math.random() - 0.5) * spread * 1.4;
-        positions[i * 3 + 1] = (Math.random() - 0.5) * spread * 0.85;
-        positions[i * 3 + 2] = (Math.random() - 0.5) * 180;
-        velocities.push({
-          vx: (Math.random() - 0.5) * 0.28,
-          vy: (Math.random() - 0.5) * 0.28,
-          vz: (Math.random() - 0.5) * 0.22
-        });
-      }
-
-      const nodesGeo = new THREE.BufferGeometry();
-      nodesGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-
-      const nodesMat = new THREE.PointsMaterial({
-        color: 0x00f7ff,
-        size: 3.8,
-        transparent: true,
-        opacity: 0.85
-      });
-      const pointsMesh = new THREE.Points(nodesGeo, nodesMat);
-      group.add(pointsMesh);
-
-      const lineMat = new THREE.LineBasicMaterial({
-        color: 0x00f7ff,
-        transparent: true,
-        opacity: 0.22
-      });
-      const maxSegments = nodeCount * nodeCount;
-      const linePositions = new Float32Array(maxSegments * 6);
-      const lineGeo = new THREE.BufferGeometry();
-      lineGeo.setAttribute("position", new THREE.BufferAttribute(linePositions, 3));
-      const linesMesh = new THREE.LineSegments(lineGeo, lineMat);
-      group.add(linesMesh);
-
-      let targetRotX = 0;
-      let targetRotY = 0;
-
-      if (heroEl) {
-        heroEl.addEventListener("mousemove", (e) => {
-          const rect = heroEl.getBoundingClientRect();
-          const normX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
-          const normY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
-          targetRotY = normX * 0.55;
-          targetRotX = normY * 0.35;
-        });
-        heroEl.addEventListener("mouseleave", () => {
-          targetRotX = 0;
-          targetRotY = 0;
-        });
-      }
-
-      window.addEventListener("resize", () => {
-        if (!heroEl) return;
-        width = heroEl.clientWidth;
-        height = heroEl.clientHeight;
-        camera.aspect = width / height;
-        camera.updateProjectionMatrix();
+      let renderer;
+      try {
+        renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: "high-performance" });
         renderer.setSize(width, height);
-      });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      } catch {
+        renderer = null;
+      }
 
-      function animateThree() {
-        if (!prefersReducedMotion) {
-          icoMesh.rotation.x += 0.0022;
-          icoMesh.rotation.y += 0.0035;
+      if (renderer) {
+        const group = new THREE.Group();
+        scene.add(group);
+
+        // 1. 3D Wireframe Cyber Icosahedron Core
+        const icoGeo = new THREE.IcosahedronGeometry(95, 1);
+        const icoMat = new THREE.MeshBasicMaterial({
+          color: 0x00f7ff,
+          wireframe: true,
+          transparent: true,
+          opacity: 0.14
+        });
+        const icoMesh = new THREE.Mesh(icoGeo, icoMat);
+        group.add(icoMesh);
+
+        // 2. 3D Neural Particle Cloud & Synaptic Connecting Lines
+        const nodeCount = 72;
+        const positions = new Float32Array(nodeCount * 3);
+        const velocities = [];
+        const spread = 380;
+
+        for (let i = 0; i < nodeCount; i++) {
+          positions[i * 3] = (Math.random() - 0.5) * spread * 1.4;
+          positions[i * 3 + 1] = (Math.random() - 0.5) * spread * 0.85;
+          positions[i * 3 + 2] = (Math.random() - 0.5) * 180;
+          velocities.push({
+            vx: (Math.random() - 0.5) * 0.28 * speedScale,
+            vy: (Math.random() - 0.5) * 0.28 * speedScale,
+            vz: (Math.random() - 0.5) * 0.22 * speedScale
+          });
+        }
+
+        const nodesGeo = new THREE.BufferGeometry();
+        nodesGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+
+        const nodesMat = new THREE.PointsMaterial({
+          color: 0x00f7ff,
+          size: 3.8,
+          transparent: true,
+          opacity: 0.85
+        });
+        const pointsMesh = new THREE.Points(nodesGeo, nodesMat);
+        group.add(pointsMesh);
+
+        const lineMat = new THREE.LineBasicMaterial({
+          color: 0x00f7ff,
+          transparent: true,
+          opacity: 0.22
+        });
+        const maxSegments = nodeCount * nodeCount;
+        const linePositions = new Float32Array(maxSegments * 6);
+        const lineGeo = new THREE.BufferGeometry();
+        lineGeo.setAttribute("position", new THREE.BufferAttribute(linePositions, 3));
+        const linesMesh = new THREE.LineSegments(lineGeo, lineMat);
+        group.add(linesMesh);
+
+        let targetRotX = 0;
+        let targetRotY = 0;
+
+        if (heroEl) {
+          heroEl.addEventListener("mousemove", (e) => {
+            const rect = heroEl.getBoundingClientRect();
+            const normX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+            const normY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+            targetRotY = normX * 0.55;
+            targetRotX = normY * 0.35;
+          });
+          heroEl.addEventListener("mouseleave", () => {
+            targetRotX = 0;
+            targetRotY = 0;
+          });
+        }
+
+        window.addEventListener("resize", () => {
+          if (!heroEl) return;
+          width = heroEl.clientWidth;
+          height = heroEl.clientHeight;
+          camera.aspect = width / height;
+          camera.updateProjectionMatrix();
+          renderer.setSize(width, height);
+        });
+
+        function animateThree() {
+          icoMesh.rotation.x += 0.0022 * speedScale;
+          icoMesh.rotation.y += 0.0035 * speedScale;
 
           group.rotation.y += (targetRotY - group.rotation.y) * 0.06;
           group.rotation.x += (targetRotX - group.rotation.x) * 0.06;
@@ -391,41 +394,92 @@ document.addEventListener("DOMContentLoaded", () => {
           nodesGeo.attributes.position.needsUpdate = true;
           lineGeo.setDrawRange(0, segIdx / 3);
           lineGeo.attributes.position.needsUpdate = true;
-        }
-        renderer.render(scene, camera);
-        if (!prefersReducedMotion) {
+
+          renderer.render(scene, camera);
           requestAnimationFrame(animateThree);
         }
+        animateThree();
+        return;
       }
-      animateThree();
     }
-  } else if (canvas && canvas.getContext) {
-    // 2D Canvas Fallback if Three.js CDN is blocked/offline
-    const ctx = canvas.getContext("2d");
-    let width = (canvas.width = canvas.parentElement?.clientWidth || window.innerWidth);
-    let height = (canvas.height = canvas.parentElement?.clientHeight || 560);
-    const particles = Array.from({ length: 45 }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.5,
-      vy: (Math.random() - 0.5) * 0.5,
-      r: 2
-    }));
-    function drawFallback() {
-      ctx.clearRect(0, 0, width, height);
-      particles.forEach((p) => {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0 || p.x > width) p.vx *= -1;
-        if (p.y < 0 || p.y > height) p.vy *= -1;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(0, 247, 255, 0.7)";
-        ctx.fill();
+
+    // 2D Canvas Fallback if WebGL is unavailable on older/power-saving laptop browsers
+    if (canvas.getContext) {
+      const ctx = canvas.getContext("2d");
+      let width = (canvas.width = canvas.parentElement?.clientWidth || window.innerWidth);
+      let height = (canvas.height = canvas.parentElement?.clientHeight || 560);
+      const mouse = { x: -9999, y: -9999 };
+
+      const particles = Array.from({ length: 48 }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.5 * speedScale,
+        vy: (Math.random() - 0.5) * 0.5 * speedScale,
+        r: 1.8
+      }));
+
+      canvas.parentElement?.addEventListener("mousemove", (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
       });
-      if (!prefersReducedMotion) requestAnimationFrame(drawFallback);
+      canvas.parentElement?.addEventListener("mouseleave", () => {
+        mouse.x = -9999;
+        mouse.y = -9999;
+      });
+
+      window.addEventListener("resize", () => {
+        width = canvas.width = canvas.parentElement?.clientWidth || window.innerWidth;
+        height = canvas.height = canvas.parentElement?.clientHeight || 560;
+      });
+
+      function drawFallback() {
+        ctx.clearRect(0, 0, width, height);
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < 0 || p.x > width) p.vx *= -1;
+          if (p.y < 0 || p.y > height) p.vy *= -1;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = "rgba(0, 247, 255, 0.65)";
+          ctx.fill();
+
+          for (let j = i + 1; j < particles.length; j++) {
+            const p2 = particles[j];
+            const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+            if (dist < 110) {
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(p2.x, p2.y);
+              ctx.strokeStyle = `rgba(0, 247, 255, ${(1 - dist / 110) * 0.18})`;
+              ctx.lineWidth = 1;
+              ctx.stroke();
+            }
+          }
+
+          const mdist = Math.hypot(p.x - mouse.x, p.y - mouse.y);
+          if (mdist < 140) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.strokeStyle = `rgba(0, 247, 255, ${(1 - mdist / 140) * 0.35})`;
+            ctx.stroke();
+          }
+        }
+        requestAnimationFrame(drawFallback);
+      }
+      drawFallback();
     }
-    drawFallback();
+  }
+
+  // Allow Three.js to finish loading if needed
+  if (typeof window.THREE !== "undefined") {
+    initCyberNetwork();
+  } else {
+    window.addEventListener("load", initCyberNetwork);
   }
 
   // --------------------------------------------------------------------------
