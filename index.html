@@ -363,6 +363,102 @@
               </button>
             </div>
           </article>
+
+          <!-- PROJECT 5: Scholarship_Helper (GlobalScholar Hub) -->
+          <article class="project-card scroll-reveal" data-repo="Scholarship_Helper" data-tilt>
+            <div>
+              <div class="project-top-bar">
+                <div class="project-icon-title">
+                  <div class="project-emoji">🎓</div>
+                  <div>
+                    <h3 class="project-title">Scholarship_Helper</h3>
+                    <div class="project-subtitle">GlobalScholar Hub — Higher Study &amp; Funding Intelligence Portal</div>
+                  </div>
+                </div>
+                <span class="project-status-badge">● Active Project</span>
+              </div>
+              <div class="repo-live-telemetry" data-repo-meta="Scholarship_Helper">
+                <span class="repo-stat">⚡ Live GitHub Sync...</span>
+              </div>
+
+              <p class="project-desc">
+                Intelligent discovery portal and application companion for CS undergraduates aiming for higher studies abroad with full scholarships (DAAD, Erasmus Mundus, Italy DSU, US Assistantships) and student tech work rights.
+              </p>
+
+              <ul class="project-highlights">
+                <li><strong>Top Sliding Breaking Circulars:</strong> Aggregates live funding announcements across DAAD, EMJM, Italy DSU, US GRA/GTA, Japan MEXT with auto-slide &amp; touch navigation.</li>
+                <li><strong>Dynamic Profile Matching Engine:</strong> Calculates live percentage match scores against applicant CGPA, IELTS, and GRE with instant re-ranking.</li>
+                <li><strong>Python NLP Deduplication:</strong> Automated fuzzy token clustering (<code>deduplicate.py</code>) grouping duplicate circulars with slide-out notice drawers.</li>
+                <li><strong>Application Kanban &amp; Document Vault:</strong> Drag-and-drop status tracker (<code>Shortlisted</code> ➔ <code>Accepted 🎉</code>) with secure CV, SOP, and transcript vault.</li>
+              </ul>
+
+              <div class="tech-tags">
+                <span class="tech-tag">Next.js 15</span>
+                <span class="tech-tag">React 19</span>
+                <span class="tech-tag">TypeScript</span>
+                <span class="tech-tag">Tailwind CSS</span>
+                <span class="tech-tag">Supabase (PostgreSQL)</span>
+                <span class="tech-tag">Python NLP</span>
+              </div>
+            </div>
+
+            <div class="project-actions">
+              <a href="https://github.com/MEhe132/Scholarship_Helper" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+                💻 GitHub Repo
+              </a>
+              <button type="button" class="btn btn-ghost btn-sm" data-modal-target="modal-scholarship-helper">
+                ⚙️ System Architecture
+              </button>
+            </div>
+          </article>
+
+          <!-- PROJECT 6: one-punch-man-manga-downloader -->
+          <article class="project-card scroll-reveal" data-repo="one-punch-man-manga-downloader" data-tilt>
+            <div>
+              <div class="project-top-bar">
+                <div class="project-icon-title">
+                  <div class="project-emoji">🥊</div>
+                  <div>
+                    <h3 class="project-title">one-punch-man-manga-downloader</h3>
+                    <div class="project-subtitle">Multithreaded Scraper &amp; Archiver with Dual Progress Visualizers</div>
+                  </div>
+                </div>
+                <span class="project-status-badge">🏷️ MIT Licensed</span>
+              </div>
+              <div class="repo-live-telemetry" data-repo-meta="one-punch-man-manga-downloader">
+                <span class="repo-stat">⚡ Live GitHub Sync...</span>
+              </div>
+
+              <p class="project-desc">
+                High-performance Python web scraper and archive engine designed to scrape and download high-resolution manga chapters concurrently with resilient rate-limit handling and CLI targeting.
+              </p>
+
+              <ul class="project-highlights">
+                <li><strong>Multithreaded Page Engine:</strong> Concurrent downloads via <code>ThreadPoolExecutor</code> with atomic file writes preventing corrupted images.</li>
+                <li><strong>Dual tqdm Interactive Progress:</strong> Nested live progress bars providing real-time feedback for both chapter queues and individual page downloads.</li>
+                <li><strong>Exponential Backoff &amp; 429 Guard:</strong> Intelligent retry mechanism with polite delay pacing preventing bot bans and transient failures.</li>
+                <li><strong>Flexible CLI Targeting:</strong> Supports single chapter (<code>-c 5</code>), range targeting (<code>-r 1-10</code>), and offline HTML catalog generation.</li>
+              </ul>
+
+              <div class="tech-tags">
+                <span class="tech-tag">Python 3.9+</span>
+                <span class="tech-tag">BeautifulSoup 4</span>
+                <span class="tech-tag">Requests Session</span>
+                <span class="tech-tag">ThreadPoolExecutor</span>
+                <span class="tech-tag">tqdm Visualizer</span>
+                <span class="tech-tag">CLI Architecture</span>
+              </div>
+            </div>
+
+            <div class="project-actions">
+              <a href="https://github.com/MEhe132/one-punch-man-manga-downloader" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+                💻 GitHub Repo
+              </a>
+              <button type="button" class="btn btn-ghost btn-sm" data-modal-target="modal-manga-downloader">
+                ⚙️ System Architecture
+              </button>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -814,6 +910,55 @@
       <div style="margin-top: 1.25rem; display: flex; gap: 0.75rem;">
         <a href="https://github.com/MEhe132/Safe-Seller-Keep-Alive/releases/tag/v1.3.0" target="_blank" rel="noopener" class="btn btn-primary btn-sm">🚀 View Release v1.3.0</a>
         <a href="https://github.com/MEhe132/Safe-Seller-Keep-Alive" target="_blank" rel="noopener" class="btn btn-outline btn-sm">💻 View Source on GitHub</a>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Modal 5: Scholarship_Helper -->
+  <dialog id="modal-scholarship-helper" class="arch-dialog" closedby="any" aria-labelledby="title-scholarship-helper">
+    <div class="modal-header">
+      <h3 id="title-scholarship-helper">🎓 GlobalScholar Hub — System Architecture</h3>
+      <button type="button" class="modal-close" aria-label="Close modal">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="arch-diagram">[Next.js 15 Client &amp; Dynamic Profile Engine]
+        │
+        ├──► Real-Time Match Engine (src/lib/matchingEngine.ts) ──► Dynamic compatibility % scoring
+        ├──► Python Fuzzy NLP Deduplication Pipeline (pipeline/deduplicate.py) ──► Token clustering
+        │
+        ├──► Dual-Mode Database Layer: Supabase PostgreSQL (schema.sql) + Offline Mock State
+        └──► Application Kanban Pipeline (/tracker) &amp; Encrypted Document Vault (/documents)</div>
+      <div class="arch-section-title">Key Engineering Decisions</div>
+      <p style="color: var(--text-secondary); font-size: 0.9rem;">
+        Engineered with dual-mode architecture: runs out of the box with offline mock persistence while seamlessly connecting to live Supabase PostgreSQL and Row-Level Security when credentials are provided.
+      </p>
+      <div style="margin-top: 1.25rem; display: flex; gap: 0.75rem;">
+        <a href="https://github.com/MEhe132/Scholarship_Helper" target="_blank" rel="noopener" class="btn btn-outline btn-sm">💻 View Source on GitHub</a>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Modal 6: one-punch-man-manga-downloader -->
+  <dialog id="modal-manga-downloader" class="arch-dialog" closedby="any" aria-labelledby="title-manga-downloader">
+    <div class="modal-header">
+      <h3 id="title-manga-downloader">🥊 One Punch Man Downloader — Scraper &amp; Concurrency Architecture</h3>
+      <button type="button" class="modal-close" aria-label="Close modal">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="arch-diagram">[CLI Argument Parser (argparse) &amp; Target Resolver]
+        │
+        ├──► BeautifulSoup HTML Scraper &amp; Chapter Index Catalog Generator (chapters_list.html)
+        │
+        └──► Multithreaded Download Pool: ThreadPoolExecutor (max_workers=5)
+               ├─ Resumable Atomic File Writer (page_xxx.webp.tmp -&gt; page_xxx.webp)
+               ├─ Dual tqdm Interactive Visualizers (Chapters Queue + Page Progress)
+               └─ HTTP 429 Exponential Backoff &amp; Requests Session Connection Pooling</div>
+      <div class="arch-section-title">Key Engineering Decisions</div>
+      <p style="color: var(--text-secondary); font-size: 0.9rem;">
+        Implements atomic file replacing (.tmp -&gt; final) to prevent corrupt files upon unexpected cancellation, coupled with exponential backoff on HTTP 429 status codes for polite scraping.
+      </p>
+      <div style="margin-top: 1.25rem; display: flex; gap: 0.75rem;">
+        <a href="https://github.com/MEhe132/one-punch-man-manga-downloader" target="_blank" rel="noopener" class="btn btn-outline btn-sm">💻 View Source on GitHub</a>
       </div>
     </div>
   </dialog>

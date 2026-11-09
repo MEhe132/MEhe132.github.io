@@ -83,7 +83,11 @@ document.addEventListener("DOMContentLoaded", () => {
 <div class="term-line"><span class="term-key">[3] Convert_php_to_usdt</span> — Win32 Desktop PHP ⇄ USDT &amp; OCR Calculator Overlay</div>
 <div class="term-line">    ↳ Release: <a class="term-link" href="https://github.com/MEhe132/Convert_php_to_usdt/releases/tag/v4.0.0" target="_blank" rel="noopener">v4.0.0 Release</a> | <a class="term-link" href="https://github.com/MEhe132/Convert_php_to_usdt" target="_blank" rel="noopener">GitHub</a></div>
 <div class="term-line"><span class="term-key">[4] Safe-Seller-Keep-Alive</span> — Stealth Manifest V3 Marketplace Session Manager</div>
-<div class="term-line">    ↳ Release: <a class="term-link" href="https://github.com/MEhe132/Safe-Seller-Keep-Alive/releases/tag/v1.3.0" target="_blank" rel="noopener">v1.3.0 Release</a> | <a class="term-link" href="https://github.com/MEhe132/Safe-Seller-Keep-Alive" target="_blank" rel="noopener">GitHub</a></div>`,
+<div class="term-line">    ↳ Release: <a class="term-link" href="https://github.com/MEhe132/Safe-Seller-Keep-Alive/releases/tag/v1.3.0" target="_blank" rel="noopener">v1.3.0 Release</a> | <a class="term-link" href="https://github.com/MEhe132/Safe-Seller-Keep-Alive" target="_blank" rel="noopener">GitHub</a></div>
+<div class="term-line"><span class="term-key">[5] Scholarship_Helper (GlobalScholar Hub)</span> — Higher Study &amp; Funding Intelligence Portal</div>
+<div class="term-line">    ↳ GitHub: <a class="term-link" href="https://github.com/MEhe132/Scholarship_Helper" target="_blank" rel="noopener">Scholarship_Helper</a></div>
+<div class="term-line"><span class="term-key">[6] one-punch-man-manga-downloader</span> — High-Speed Multithreaded Python Scraper &amp; Archiver</div>
+<div class="term-line">    ↳ GitHub: <a class="term-link" href="https://github.com/MEhe132/one-punch-man-manga-downloader" target="_blank" rel="noopener">one-punch-man-manga-downloader</a></div>`,
 
     ls: () => COMMAND_HANDLERS.projects(),
     "ls -la": () => COMMAND_HANDLERS.projects(),
@@ -549,6 +553,20 @@ document.addEventListener("DOMContentLoaded", () => {
       run: () => window.open("https://github.com/MEhe132/Safe-Seller-Keep-Alive/releases/tag/v1.3.0", "_blank", "noopener")
     },
     {
+      title: "View GlobalScholar Hub (Scholarship_Helper)",
+      tag: "Active Project",
+      icon: "🎓",
+      keywords: "scholarship helper globalscholar daad erasmus nextjs supabase",
+      run: () => window.open("https://github.com/MEhe132/Scholarship_Helper", "_blank", "noopener")
+    },
+    {
+      title: "View One Punch Man Manga Downloader",
+      tag: "MIT Licensed",
+      icon: "🥊",
+      keywords: "manga downloader scraper python threadpool tqdm cli",
+      run: () => window.open("https://github.com/MEhe132/one-punch-man-manga-downloader", "_blank", "noopener")
+    },
+    {
       title: "Jump to FEC CSE Research Lab & Academic Timeline",
       tag: "Section",
       icon: "🔬",
@@ -754,6 +772,24 @@ document.addEventListener("DOMContentLoaded", () => {
       sizeKb: 85,
       desc: "Stealth Session Keep-Alive Browser Extension (Manifest V3) for G2G & U7BUY with wake-lock & Cloudflare guard.",
       url: "https://github.com/MEhe132/Safe-Seller-Keep-Alive"
+    },
+    Scholarship_Helper: {
+      lang: "TypeScript",
+      stars: 1,
+      forks: 0,
+      updated: "Active 2026",
+      sizeKb: 310,
+      desc: "GlobalScholar Hub: Higher Study & Scholarship Discovery Portal with Work Rights Guides & Kanban Pipeline.",
+      url: "https://github.com/MEhe132/Scholarship_Helper"
+    },
+    "one-punch-man-manga-downloader": {
+      lang: "Python",
+      stars: 1,
+      forks: 0,
+      updated: "Active 2026",
+      sizeKb: 120,
+      desc: "High-speed multithreaded Python manga downloader with dual progress bars and CLI range flags.",
+      url: "https://github.com/MEhe132/one-punch-man-manga-downloader"
     },
     "MEhe132.github.io": {
       lang: "HTML/CSS/JS",
